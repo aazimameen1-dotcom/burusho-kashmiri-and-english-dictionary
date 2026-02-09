@@ -79,7 +79,9 @@
         <!-- Category Filters -->
         <div class="flex flex-wrap gap-2 mb-8 justify-center md:justify-start" id="filterContainer">
             <button onclick="filterWords('all')" class="filter-btn active px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-semibold shadow transition-transform hover:scale-105">All</button>
-            <button onclick="filterWords('common')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Nouns</button>
+            <button onclick="filterWords('common')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Common</button>
+            <button onclick="filterWords('family')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Family</button>
+            <button onclick="filterWords('body')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Body</button>
             <button onclick="filterWords('animals')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Animals</button>
             <button onclick="filterWords('food')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Food & Crops</button>
             <button onclick="filterWords('nature')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Nature</button>
@@ -131,35 +133,83 @@
             { burushaski: "Je shu waba", kashmiri: "Bah chus theek", english: "I am fine", category: "phrases", type: "Phrase", icon: "fa-smile" },
             { burushaski: "Juu", kashmiri: "Shukriya", english: "Thanks", category: "phrases", type: "Phrase", icon: "fa-thumbs-up" },
 
-            // Animals (Jandaar) & Birds (Balaso) - NEW
+            // Family (Diy) - NEW
+            { burushaski: "U / Auy", kashmiri: "Mol", english: "Father", category: "family", type: "Relation", icon: "fa-user-tie" },
+            { burushaski: "Mami", kashmiri: "Moj", english: "Mother", category: "family", type: "Relation", icon: "fa-user-nurse" },
+            { burushaski: "A-cho", kashmiri: "Boyi", english: "Brother", category: "family", type: "Relation", icon: "fa-user-friends" },
+            { burushaski: "A-yas", kashmiri: "Beni", english: "Sister", category: "family", type: "Relation", icon: "fa-user-friends" },
+            { burushaski: "A-pi", kashmiri: "Bud-bab", english: "Grandfather", category: "family", type: "Relation", icon: "fa-user-clock" },
+            { burushaski: "A-mi", kashmiri: "Nani / Dadi", english: "Grandmother", category: "family", type: "Relation", icon: "fa-user-clock" },
+
+            // Body Parts (Bat) - NEW
+            { burushaski: "Yate", kashmiri: "Kala", english: "Head", category: "body", type: "Body", icon: "fa-brain" },
+            { burushaski: "Elch", kashmiri: "Ach", english: "Eye", category: "body", type: "Body", icon: "fa-eye" },
+            { burushaski: "Pumus", kashmiri: "Nast", english: "Nose", category: "body", type: "Body", icon: "fa-meh" },
+            { burushaski: "Khat", kashmiri: "Aaes", english: "Mouth", category: "body", type: "Body", icon: "fa-comment" },
+            { burushaski: "Pume", kashmiri: "Dand", english: "Tooth", category: "body", type: "Body", icon: "fa-tooth" },
+            { burushaski: "Iltumal", kashmiri: "Kan", english: "Ear", category: "body", type: "Body", icon: "fa-deaf" },
+            { burushaski: "Huti", kashmiri: "Khor", english: "Foot", category: "body", type: "Body", icon: "fa-shoe-prints" },
+            { burushaski: "Yau", kashmiri: "Mas", english: "Hair", category: "body", type: "Body", icon: "fa-cut" },
+            // Existing body parts re-categorized
+            { burushaski: "Arén", kashmiri: "Myon ath", english: "My hand", category: "body", type: "Noun", icon: "fa-hand-paper" },
+            { burushaski: "Askil", kashmiri: "Myon buth", english: "My face", category: "body", type: "Noun", icon: "fa-user-circle" },
+
+            // Nature (Khircanc) - Expanded
+            { burushaski: "Sa", kashmiri: "Siri", english: "Sun", category: "nature", type: "Khircanc", icon: "fa-sun" },
+            { burushaski: "Halanj", kashmiri: "Zoon", english: "Moon", category: "nature", type: "Khircanc", icon: "fa-moon" },
+            { burushaski: "Asumun", kashmiri: "Tarukh", english: "Star", category: "nature", "type": "Khircanc", "icon": "fa-star" },
+            { burushaski: "Aya", kashmiri: "Asmaan", english: "Sky", category: "nature", type: "Khircanc", icon: "fa-cloud" },
+            { burushaski: "Haralt", kashmiri: "Rood", english: "Rain", category: "nature", type: "Khircanc", icon: "fa-cloud-rain" },
+            { burushaski: "Bar", kashmiri: "Sheen", english: "Snow", category: "nature", type: "Khircanc", icon: "fa-snowflake" },
+            { burushaski: "Phu", kashmiri: "Naar", english: "Fire", category: "nature", type: "Khircanc", icon: "fa-fire" },
+            { burushaski: "Dan", kashmiri: "Kani", english: "Stone", category: "nature", type: "Khircanc", icon: "fa-cubes" },
+            { burushaski: "Aspan", kashmiri: "Posh", english: "Flower", category: "nature", type: "Khircanc", icon: "fa-spa" },
+            { burushaski: "Bu", kashmiri: "Gasa", english: "Grass", category: "nature", type: "Khircanc", icon: "fa-seedling" },
+            // Existing nature
+            { burushaski: "Tom", kashmiri: "Kul", english: "Tree", category: "nature", type: "Khircanc", icon: "fa-tree" },
+            { burushaski: "Chish", kashmiri: "Sangur/Pahad", english: "Mountain", category: "nature", type: "Nature", icon: "fa-mountain" },
+            { burushaski: "Sinda", kashmiri: "Dariya", english: "River", category: "nature", type: "Nature", icon: "fa-water" },
+
+            // Animals (Jandaar) & Birds (Balaso) - Expanded
+            { burushaski: "Chhal", kashmiri: "Tshaavul", english: "Goat", category: "animals", type: "Jandaar", icon: "fa-chevron-right" },
+            { burushaski: "Gali", kashmiri: "Kath", english: "Sheep", category: "animals", type: "Jandaar", icon: "fa-layer-group" },
+            { burushaski: "Ya", kashmiri: "Haaput", english: "Bear", category: "animals", type: "Jandaar", icon: "fa-paw" },
+            { burushaski: "Tul", kashmiri: "Saruf", english: "Snake", category: "animals", type: "Jandaar", icon: "fa-staff-snake" },
+            { burushaski: "Chhumo", kashmiri: "Gaad", english: "Fish", category: "animals", type: "Jandaar", icon: "fa-fish" },
+            { burushaski: "Galig", kashmiri: "Jaanvar", english: "Bird", category: "animals", type: "Balaso", icon: "fa-feather" },
+            // Existing animals
             { burushaski: "Haghúr", kashmiri: "Gur", english: "Horse", category: "animals", type: "Jandaar", icon: "fa-horse" },
             { burushaski: "Biá", kashmiri: "Gav", english: "Cow", category: "animals", type: "Jandaar", icon: "fa-cow" },
             { burushaski: "Bus", kashmiri: "Bror", english: "Cat", category: "animals", type: "Jandaar", icon: "fa-cat" },
             { burushaski: "Qaqá", kashmiri: "Kaav", english: "Crow", category: "animals", type: "Balaso", icon: "fa-crow" },
             { burushaski: "Dáudal", kashmiri: "Kotur", english: "Pigeon", category: "animals", type: "Balaso", icon: "fa-dove" },
-            
-            // Food & Crops (Famol/Hoycin) - NEW
+            { burushaski: "Huk", kashmiri: "Hoon", english: "Dog", category: "animals", type: "Noun", icon: "fa-dog" },
+            { burushaski: "Xhal", kashmiri: "Loh'v", english: "Fox", category: "animals", type: "Noun", icon: "fa-paw" },
+
+            // Food & Crops (Famol/Hoycin) - Expanded
+            { burushaski: "Shapik", kashmiri: "Tsot", english: "Bread", category: "food", type: "Food", icon: "fa-bread-slice" },
+            { burushaski: "Chap", kashmiri: "Maaz", english: "Meat", category: "food", type: "Food", icon: "fa-drumstick-bite" },
+            { burushaski: "Mamu", kashmiri: "Dod", english: "Milk", category: "food", type: "Food", icon: "fa-wine-bottle" },
+            { burushaski: "Tighan", kashmiri: "Thool", english: "Egg", category: "food", type: "Food", icon: "fa-egg" },
+            { burushaski: "Ghandaao", kashmiri: "Dach", english: "Grapes", category: "food", type: "Famol", icon: "fa-leaf" },
+            { burushaski: "Biranj", kashmiri: "Tul", english: "Mulberry", category: "food", type: "Famol", icon: "fa-apple-alt" },
+            // Existing food
             { burushaski: "Ju", kashmiri: "Tser", english: "Apricot", category: "food", type: "Famol", icon: "fa-lemon" },
             { burushaski: "Phaphá", kashmiri: "Tsoonth", english: "Apple", category: "food", type: "Famol", icon: "fa-apple-alt" },
             { burushaski: "Ghir", kashmiri: "Dooyn", english: "Walnut", category: "food", type: "Famol", icon: "fa-brain" },
             { burushaski: "Pápu", kashmiri: "Aloo", english: "Potato", category: "food", type: "Hoycin", icon: "fa-carrot" },
             { burushaski: "Gupí", kashmiri: "Bandgobhi", english: "Cabbage", category: "food", type: "Hoycin", icon: "fa-leaf" },
+            { burushaski: "Aćel", kashmiri: "Poni", english: "Water", category: "food", type: "Noun", icon: "fa-water" },
 
-            // Nature (Khircanc) - NEW
-            { burushaski: "Tom", kashmiri: "Kul", english: "Tree", category: "nature", type: "Khircanc", icon: "fa-tree" },
-            { burushaski: "Chish", kashmiri: "Sangur/Pahad", english: "Mountain", category: "nature", type: "Nature", icon: "fa-mountain" },
-            { burushaski: "Sinda", kashmiri: "Dariya", english: "River", category: "nature", type: "Nature", icon: "fa-water" },
-
-            // Common Nouns (Existing)
+            // Common Nouns & Objects (Saamaan)
+            { burushaski: "Hin", kashmiri: "Bar", english: "Door", category: "common", type: "Saamaan", icon: "fa-door-open" },
+            { burushaski: "Kathar", kashmiri: "Chani", english: "Knife", category: "common", type: "Saamaan", icon: "fa-utensils" },
+            { burushaski: "Kaphgir", kashmiri: "Chamchi", english: "Spoon", category: "common", type: "Saamaan", icon: "fa-spoon" },
+            { burushaski: "Mun", kashmiri: "Palang", english: "Bed", category: "common", type: "Saamaan", icon: "fa-bed" },
             { burushaski: "Hir", kashmiri: "Mohnyu", english: "Man", category: "common", type: "Noun", icon: "fa-male" },
             { burushaski: "Guśi", kashmiri: "Zanan", english: "Woman", category: "common", type: "Noun", icon: "fa-female" },
             { burushaski: "Dasén", kashmiri: "Koor", english: "Girl", category: "common", type: "Noun", icon: "fa-child" },
-            { burushaski: "Huk", kashmiri: "Hoon", english: "Dog", category: "common", type: "Noun", icon: "fa-dog" },
-            { burushaski: "Xhal", kashmiri: "Loh'v", english: "Fox", category: "common", type: "Noun", icon: "fa-paw" },
             { burushaski: "Yha / Hakíś", kashmiri: "Gari / Makaan", english: "House / Houses", category: "common", type: "Noun", icon: "fa-home" },
-            { burushaski: "Aćel", kashmiri: "Poni", english: "Water", category: "common", type: "Noun", icon: "fa-water" },
-            { burushaski: "Arén", kashmiri: "Myon ath", english: "My hand", category: "common", type: "Noun", icon: "fa-hand-paper" },
-            { burushaski: "Askil", kashmiri: "Myon buth", english: "My face", category: "common", type: "Noun", icon: "fa-user-circle" },
 
             // Pronouns
             { burushaski: "Ja / Je", kashmiri: "Bah", english: "I", category: "pronouns", type: "Pronoun", icon: "fa-user" },
@@ -310,6 +360,8 @@
                 if(item.category === 'animals') tagColor = "bg-red-100 text-red-600";
                 if(item.category === 'food') tagColor = "bg-yellow-100 text-yellow-600";
                 if(item.category === 'nature') tagColor = "bg-emerald-100 text-emerald-600";
+                if(item.category === 'family') tagColor = "bg-pink-100 text-pink-600";
+                if(item.category === 'body') tagColor = "bg-teal-100 text-teal-600";
 
                 card.innerHTML = `
                     <div class="card-pattern bg-gray-50">
