@@ -33,13 +33,6 @@
             background: #a1a1aa;
         }
 
-        .card-image {
-            height: 160px;
-            width: 100%;
-            object-fit: cover;
-            border-bottom: 1px solid #e5e7eb;
-        }
-
         .card-pattern {
             height: 160px;
             width: 100%;
@@ -50,6 +43,7 @@
             justify-content: center;
             font-size: 3rem;
             color: #9ca3af;
+            border-bottom: 1px solid #e5e7eb;
         }
     </style>
 </head>
@@ -134,16 +128,16 @@
             { burushaski: "Je shu waba", kashmiri: "Bah chus theek", english: "I am fine", category: "phrases", type: "Phrase", icon: "fa-smile" },
             { burushaski: "Juu", kashmiri: "Shukriya", english: "Thanks", category: "phrases", type: "Phrase", icon: "fa-thumbs-up" },
 
-            // Common Nouns (With Images)
-            { burushaski: "Hir", kashmiri: "Mohnyu", english: "Man", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=250&fit=crop" },
-            { burushaski: "Guśi", kashmiri: "Zanan", english: "Woman", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=250&fit=crop" },
-            { burushaski: "Dasén", kashmiri: "Koor", english: "Girl", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1517677130605-abb7ca91d20c?w=400&h=250&fit=crop" },
-            { burushaski: "Huk", kashmiri: "Hoon", english: "Dog", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=250&fit=crop" },
-            { burushaski: "Xhal", kashmiri: "Loh'v", english: "Fox", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=400&h=250&fit=crop" },
-            { burushaski: "Yha / Hakíś", kashmiri: "Gari / Makaan", english: "House / Houses", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&h=250&fit=crop" },
-            { burushaski: "Aćel", kashmiri: "Poni", english: "Water", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1562243577-b1528b9d997d?w=400&h=250&fit=crop" },
-            { burushaski: "Arén", kashmiri: "Myon ath", english: "My hand", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=250&fit=crop" },
-            { burushaski: "Askil", kashmiri: "Myon buth", english: "My face", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1550520920-27ba45c38740?w=400&h=250&fit=crop" },
+            // Common Nouns (With Icons instead of Images)
+            { burushaski: "Hir", kashmiri: "Mohnyu", english: "Man", category: "common", type: "Noun", icon: "fa-male" },
+            { burushaski: "Guśi", kashmiri: "Zanan", english: "Woman", category: "common", type: "Noun", icon: "fa-female" },
+            { burushaski: "Dasén", kashmiri: "Koor", english: "Girl", category: "common", type: "Noun", icon: "fa-child" },
+            { burushaski: "Huk", kashmiri: "Hoon", english: "Dog", category: "common", type: "Noun", icon: "fa-dog" },
+            { burushaski: "Xhal", kashmiri: "Loh'v", english: "Fox", category: "common", type: "Noun", icon: "fa-paw" },
+            { burushaski: "Yha / Hakíś", kashmiri: "Gari / Makaan", english: "House / Houses", category: "common", type: "Noun", icon: "fa-home" },
+            { burushaski: "Aćel", kashmiri: "Poni", english: "Water", category: "common", type: "Noun", icon: "fa-water" },
+            { burushaski: "Arén", kashmiri: "Myon ath", english: "My hand", category: "common", type: "Noun", icon: "fa-hand-paper" },
+            { burushaski: "Askil", kashmiri: "Myon buth", english: "My face", category: "common", type: "Noun", icon: "fa-user-circle" },
 
             // Pronouns
             { burushaski: "Ja / Je", kashmiri: "Bah", english: "I", category: "pronouns", type: "Pronoun", icon: "fa-user" },
@@ -292,20 +286,10 @@
                 if(item.category === 'phrases') tagColor = "bg-purple-100 text-purple-600";
                 if(item.category === 'pronouns') tagColor = "bg-orange-100 text-orange-600";
 
-                // Visual Content (Image or Icon)
-                let visualContent = '';
-                if (item.image) {
-                    visualContent = `<img src="${item.image}" alt="${item.english}" class="card-image">`;
-                } else {
-                    visualContent = `
-                        <div class="card-pattern bg-gray-50">
-                            <i class="fas ${item.icon || 'fa-language'} text-indigo-200"></i>
-                        </div>
-                    `;
-                }
-
                 card.innerHTML = `
-                    ${visualContent}
+                    <div class="card-pattern bg-gray-50">
+                        <i class="fas ${item.icon || 'fa-language'} text-indigo-200"></i>
+                    </div>
                     <div class="p-6">
                         <div class="flex justify-between items-start mb-4">
                             <span class="text-xs font-bold px-2 py-1 rounded uppercase tracking-wide ${tagColor}">
