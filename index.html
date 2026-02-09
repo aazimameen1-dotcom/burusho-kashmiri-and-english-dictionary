@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Burushaski & Kashmiri Dictionary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Noto+Sans:wght@400;700&display=swap');
+        
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f3f4f6;
+        }
+        
+        .burushaski-font {
+            font-family: 'Noto Sans', sans-serif;
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c7c7cc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a1a1aa;
+        }
+
+        .card-image {
+            height: 160px;
+            width: 100%;
+            object-fit: cover;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .card-pattern {
+            height: 160px;
+            width: 100%;
+            background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+            background-size: 20px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3rem;
+            color: #9ca3af;
+        }
+    </style>
+</head>
+<body class="text-gray-800 min-h-screen flex flex-col">
+
+    <!-- Hero Section -->
+    <header class="bg-gradient-to-r from-indigo-700 to-blue-600 text-white shadow-lg">
+        <div class="max-w-6xl mx-auto px-4 py-8 md:py-12">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0 text-center md:text-left">
+                    <h1 class="text-3xl md:text-5xl font-bold mb-2 tracking-tight">Burushaski & Kashmiri</h1>
+                    <p class="text-indigo-100 text-lg opacity-90">Exploring the languages of the Hunza, Nagar, Yasin valleys and Kashmir.</p>
+                </div>
+                <div class="hidden md:block">
+                    <i class="fas fa-mountain text-6xl text-indigo-300 opacity-50"></i>
+                </div>
+            </div>
+            
+            <!-- Search Bar -->
+            <div class="mt-8 relative max-w-2xl">
+                <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                    <i class="fas fa-search text-gray-400"></i>
+                </div>
+                <input type="text" id="searchInput" placeholder="Search in English, Burushaski, or Kashmiri..." 
+                    class="block w-full pl-10 pr-3 py-4 border-none rounded-xl text-gray-900 placeholder-gray-500 focus:outline-none focus:ring-4 focus:ring-indigo-300 shadow-xl transition-all">
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="flex-grow max-w-6xl mx-auto px-4 py-8 w-full">
+        
+        <!-- Category Filters -->
+        <div class="flex flex-wrap gap-2 mb-8 justify-center md:justify-start" id="filterContainer">
+            <button onclick="filterWords('all')" class="filter-btn active px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-semibold shadow transition-transform hover:scale-105">All</button>
+            <button onclick="filterWords('common')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Nouns & People</button>
+            <button onclick="filterWords('pronouns')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Pronouns</button>
+            <button onclick="filterWords('time')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Time & Days</button>
+            <button onclick="filterWords('numbers')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Numbers</button>
+            <button onclick="filterWords('phrases')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Phrases</button>
+        </div>
+
+        <!-- Stats -->
+        <div class="mb-4 text-gray-500 text-sm font-medium flex justify-between items-center">
+            <span id="resultCount">Showing all words</span>
+        </div>
+
+        <!-- Dictionary Grid -->
+        <div id="dictionaryGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <!-- Cards will be injected here via JS -->
+        </div>
+
+        <!-- Empty State (Hidden by default) -->
+        <div id="emptyState" class="hidden text-center py-20">
+            <div class="inline-block p-4 rounded-full bg-gray-200 mb-4">
+                <i class="fas fa-search text-3xl text-gray-400"></i>
+            </div>
+            <h3 class="text-xl font-semibold text-gray-700">No words found</h3>
+            <p class="text-gray-500">Try adjusting your search terms.</p>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-gray-200 mt-auto">
+        <div class="max-w-6xl mx-auto px-4 py-6">
+            <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+                <p>&copy; 2024 Language Resource</p>
+                <div class="mt-2 md:mt-0 flex space-x-4">
+                    <span>Burushaski</span>
+                    <span>•</span>
+                    <span>Kashmiri</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Data Source with Kashmiri added
+        const dictionaryData = [
+            // Phrases
+            { burushaski: "Be hal bila?", kashmiri: "Toh'e chiv varay?", english: "How are you?", category: "phrases", type: "Phrase", icon: "fa-comments" },
+            { burushaski: "Je shu waba", kashmiri: "Bah chus theek", english: "I am fine", category: "phrases", type: "Phrase", icon: "fa-smile" },
+            { burushaski: "Juu", kashmiri: "Shukriya", english: "Thanks", category: "phrases", type: "Phrase", icon: "fa-thumbs-up" },
+
+            // Common Nouns (With Images)
+            { burushaski: "Hir", kashmiri: "Mohnyu", english: "Man", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=400&h=250&fit=crop" },
+            { burushaski: "Guśi", kashmiri: "Zanan", english: "Woman", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=400&h=250&fit=crop" },
+            { burushaski: "Dasén", kashmiri: "Koor", english: "Girl", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1517677130605-abb7ca91d20c?w=400&h=250&fit=crop" },
+            { burushaski: "Huk", kashmiri: "Hoon", english: "Dog", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1587300003388-59208cc962cb?w=400&h=250&fit=crop" },
+            { burushaski: "Xhal", kashmiri: "Loh'v", english: "Fox", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1474511320723-9a56873867b5?w=400&h=250&fit=crop" },
+            { burushaski: "Yha / Hakíś", kashmiri: "Gari / Makaan", english: "House / Houses", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1518780664697-55e3ad937233?w=400&h=250&fit=crop" },
+            { burushaski: "Aćel", kashmiri: "Poni", english: "Water", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1562243577-b1528b9d997d?w=400&h=250&fit=crop" },
+            { burushaski: "Arén", kashmiri: "Myon ath", english: "My hand", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1516035069371-29a1b244cc32?w=400&h=250&fit=crop" },
+            { burushaski: "Askil", kashmiri: "Myon buth", english: "My face", category: "common", type: "Noun", image: "https://images.unsplash.com/photo-1550520920-27ba45c38740?w=400&h=250&fit=crop" },
+
+            // Pronouns
+            { burushaski: "Ja / Je", kashmiri: "Bah", english: "I", category: "pronouns", type: "Pronoun", icon: "fa-user" },
+            { burushaski: "Un", kashmiri: "Tsah", english: "You (singular)", category: "pronouns", type: "Pronoun", icon: "fa-finger-print" },
+            { burushaski: "In", kashmiri: "Suh / Soh", english: "He / She / It", category: "pronouns", type: "Pronoun", icon: "fa-user-tag" },
+            { burushaski: "Mi", kashmiri: "Aes", english: "We", category: "pronouns", type: "Pronoun", icon: "fa-users" },
+            { burushaski: "Ma", kashmiri: "Toh'e", english: "You (plural)", category: "pronouns", type: "Pronoun", icon: "fa-users-cog" },
+
+            // Time & Days
+            { burushaski: "Akhoinģ", kashmiri: "Az", english: "Today", category: "time", type: "Time", icon: "fa-calendar-day" },
+            { burushaski: "Satik", kashmiri: "Raath", english: "Yesterday", category: "time", type: "Time", icon: "fa-history" },
+            { burushaski: "Jimalay / Jimel", kashmiri: "Pagah", english: "Tomorrow", category: "time", type: "Time", icon: "fa-hourglass-start" },
+            { burushaski: "A-dit", kashmiri: "Aathwar", english: "Sunday", category: "time", type: "Day", icon: "fa-sun" },
+            { burushaski: "Chandurar", kashmiri: "Tsandrawar", english: "Monday", category: "time", type: "Day", icon: "fa-moon" },
+            { burushaski: "Angaro", kashmiri: "Bomwar", english: "Tuesday", category: "time", type: "Day", icon: "fa-calendar-alt" },
+            { burushaski: "Bodho", kashmiri: "Bodhwar", english: "Wednesday", category: "time", type: "Day", icon: "fa-calendar-check" },
+            { burushaski: "Berayspat", kashmiri: "Braswar", english: "Thursday", category: "time", type: "Day", icon: "fa-calendar-week" },
+            { burushaski: "Shukuro", kashmiri: "Juma / Shukarwar", english: "Friday", category: "time", type: "Day", icon: "fa-mosque" },
+            { burushaski: "Shumshayr", kashmiri: "Bathwar", english: "Saturday", category: "time", type: "Day", icon: "fa-couch" },
+
+            // Numbers
+            { burushaski: "Hik", kashmiri: "Akh", english: "One (1)", category: "numbers", type: "Number", icon: "fa-dice-one" },
+            { burushaski: "Altó", kashmiri: "Zuh", english: "Two (2)", category: "numbers", type: "Number", icon: "fa-dice-two" },
+            { burushaski: "Iskí", kashmiri: "Treh", english: "Three (3)", category: "numbers", type: "Number", icon: "fa-dice-three" },
+            { burushaski: "Wálti", kashmiri: "Tsoor", english: "Four (4)", category: "numbers", type: "Number", icon: "fa-dice-four" },
+            { burushaski: "Číndi", kashmiri: "Paants", english: "Five (5)", category: "numbers", type: "Number", icon: "fa-dice-five" },
+            { burushaski: "Mishíndi", kashmiri: "Sheh", english: "Six (6)", category: "numbers", type: "Number", icon: "fa-dice-six" },
+            { burushaski: "Thalé", kashmiri: "Sath", english: "Seven (7)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altámbi", kashmiri: "Aeth", english: "Eight (8)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Huntí", kashmiri: "Nav", english: "Nine (9)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Tóorimi", kashmiri: "Dah", english: "Ten (10)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-hik", kashmiri: "Kah", english: "Eleven (11)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-alto", kashmiri: "Bah", english: "Twelve (12)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-iski", kashmiri: "Truvah", english: "Thirteen (13)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-wálti", kashmiri: "Tsodah", english: "Fourteen (14)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-číndi", kashmiri: "Pandah", english: "Fifteen (15)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-mishíndi", kashmiri: "Shurah", english: "Sixteen (16)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-thale", kashmiri: "Sadah", english: "Seventeen (17)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-altámbi", kashmiri: "Ardah", english: "Eighteen (18)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-hunti", kashmiri: "Kunwuh", english: "Nineteen (19)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar", kashmiri: "Wuh", english: "Twenty (20)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+        ];
+
+        const grid = document.getElementById('dictionaryGrid');
+        const searchInput = document.getElementById('searchInput');
+        const emptyState = document.getElementById('emptyState');
+        const resultCount = document.getElementById('resultCount');
+        let currentFilter = 'all';
+
+        // Initial Render
+        renderCards(dictionaryData);
+
+        // Speech Synthesis Setup
+        const synth = window.speechSynthesis;
+
+        function speakWord(text, event) {
+            event.stopPropagation(); // Prevent card click (copy)
+            
+            if (synth.speaking) {
+                console.error('speechSynthesis.speaking');
+                return;
+            }
+
+            if (text !== '') {
+                const utterThis = new SpeechSynthesisUtterance(text);
+                
+                // Attempt to find a suitable voice, or just use default
+                // Burushaski is not supported, so we rely on default phonetic reading
+                utterThis.rate = 0.8; // Slow down slightly for clarity
+                utterThis.pitch = 1;
+                
+                utterThis.onend = function (event) {
+                    console.log('SpeechSynthesisUtterance.onend');
+                };
+                utterThis.onerror = function (event) {
+                    console.error('SpeechSynthesisUtterance.onerror');
+                };
+
+                synth.speak(utterThis);
+            }
+        }
+
+        // Filter Function
+        function filterWords(category) {
+            currentFilter = category;
+            
+            // Update Buttons UI
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                if(category === 'all' && btn.innerText === 'All') {
+                     btn.classList.add('bg-indigo-600', 'text-white');
+                     btn.classList.remove('bg-white', 'text-gray-600');
+                } else if (btn.getAttribute('onclick').includes(category) && category !== 'all') {
+                     btn.classList.add('bg-indigo-600', 'text-white');
+                     btn.classList.remove('bg-white', 'text-gray-600');
+                } else {
+                    btn.classList.remove('bg-indigo-600', 'text-white');
+                    btn.classList.add('bg-white', 'text-gray-600');
+                }
+            });
+
+            applyFilters();
+        }
+
+        // Search Listener
+        searchInput.addEventListener('input', () => {
+            applyFilters();
+        });
+
+        // Core Logic to Apply Search & Category
+        function applyFilters() {
+            const searchTerm = searchInput.value.toLowerCase();
+            
+            const filtered = dictionaryData.filter(item => {
+                const matchesCategory = currentFilter === 'all' || item.category === currentFilter;
+                const matchesSearch = item.burushaski.toLowerCase().includes(searchTerm) || 
+                                      item.english.toLowerCase().includes(searchTerm) ||
+                                      item.kashmiri.toLowerCase().includes(searchTerm);
+                return matchesCategory && matchesSearch;
+            });
+
+            renderCards(filtered);
+        }
+
+        // Render Function
+        function renderCards(data) {
+            grid.innerHTML = '';
+            
+            if (data.length === 0) {
+                emptyState.classList.remove('hidden');
+                resultCount.innerText = `No results found`;
+                return;
+            } else {
+                emptyState.classList.add('hidden');
+                resultCount.innerText = `Showing ${data.length} word${data.length !== 1 ? 's' : ''}`;
+            }
+
+            data.forEach(item => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden hover:shadow-lg transition duration-300 transform hover:-translate-y-1 group cursor-pointer';
+                card.onclick = () => copyToClipboard(item.burushaski);
+                
+                // Color coding tags based on category
+                let tagColor = "bg-gray-100 text-gray-600";
+                if(item.category === 'numbers') tagColor = "bg-blue-100 text-blue-600";
+                if(item.category === 'time') tagColor = "bg-green-100 text-green-600";
+                if(item.category === 'phrases') tagColor = "bg-purple-100 text-purple-600";
+                if(item.category === 'pronouns') tagColor = "bg-orange-100 text-orange-600";
+
+                // Visual Content (Image or Icon)
+                let visualContent = '';
+                if (item.image) {
+                    visualContent = `<img src="${item.image}" alt="${item.english}" class="card-image">`;
+                } else {
+                    visualContent = `
+                        <div class="card-pattern bg-gray-50">
+                            <i class="fas ${item.icon || 'fa-language'} text-indigo-200"></i>
+                        </div>
+                    `;
+                }
+
+                card.innerHTML = `
+                    ${visualContent}
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-4">
+                            <span class="text-xs font-bold px-2 py-1 rounded uppercase tracking-wide ${tagColor}">
+                                ${item.type}
+                            </span>
+                            <div class="flex space-x-2">
+                                <button onclick="speakWord('${item.burushaski.replace(/'/g, "\\'")}', event)" class="text-gray-400 hover:text-indigo-600 transition p-1 rounded-full hover:bg-indigo-50" title="Listen (Burushaski)">
+                                    <i class="fas fa-volume-up"></i>
+                                </button>
+                                <button class="text-gray-400 hover:text-indigo-600 transition p-1 rounded-full hover:bg-indigo-50" title="Copy Burushaski">
+                                    <i class="far fa-copy"></i>
+                                </button>
+                            </div>
+                        </div>
+                        <h2 class="text-2xl font-bold text-gray-800 mb-1 burushaski-font">${item.burushaski}</h2>
+                        
+                        <div class="flex flex-col gap-1 mt-2">
+                             <div class="flex items-center text-gray-600">
+                                <span class="w-20 text-xs font-semibold uppercase text-gray-400">English</span>
+                                <span class="text-lg font-medium">${item.english}</span>
+                            </div>
+                            <div class="flex items-center text-indigo-700">
+                                <span class="w-20 text-xs font-semibold uppercase text-indigo-300">Kashmiri</span>
+                                <span class="text-lg font-medium">${item.kashmiri}</span>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Copy Feature
+        function copyToClipboard(text) {
+            const tempInput = document.createElement("textarea");
+            tempInput.value = text;
+            document.body.appendChild(tempInput);
+            tempInput.select();
+            document.execCommand("copy");
+            document.body.removeChild(tempInput);
+
+            // Simple toast notification logic
+            const toast = document.createElement('div');
+            toast.className = 'fixed bottom-4 right-4 bg-gray-800 text-white px-4 py-2 rounded shadow-lg z-50 text-sm animate-bounce';
+            toast.innerText = `Copied "${text}"`;
+            document.body.appendChild(toast);
+            setTimeout(() => toast.remove(), 2000);
+        }
+    </script>
+</body>
+</html>
