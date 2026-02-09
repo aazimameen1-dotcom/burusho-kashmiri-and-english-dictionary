@@ -79,9 +79,12 @@
         <!-- Category Filters -->
         <div class="flex flex-wrap gap-2 mb-8 justify-center md:justify-start" id="filterContainer">
             <button onclick="filterWords('all')" class="filter-btn active px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-semibold shadow transition-transform hover:scale-105">All</button>
-            <button onclick="filterWords('common')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Nouns & People</button>
+            <button onclick="filterWords('common')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Nouns</button>
+            <button onclick="filterWords('animals')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Animals</button>
+            <button onclick="filterWords('food')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Food & Crops</button>
+            <button onclick="filterWords('nature')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Nature</button>
             <button onclick="filterWords('pronouns')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Pronouns</button>
-            <button onclick="filterWords('time')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Time & Days</button>
+            <button onclick="filterWords('time')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Time</button>
             <button onclick="filterWords('numbers')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Numbers</button>
             <button onclick="filterWords('phrases')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Phrases</button>
         </div>
@@ -128,7 +131,26 @@
             { burushaski: "Je shu waba", kashmiri: "Bah chus theek", english: "I am fine", category: "phrases", type: "Phrase", icon: "fa-smile" },
             { burushaski: "Juu", kashmiri: "Shukriya", english: "Thanks", category: "phrases", type: "Phrase", icon: "fa-thumbs-up" },
 
-            // Common Nouns (With Icons instead of Images)
+            // Animals (Jandaar) & Birds (Balaso) - NEW
+            { burushaski: "Haghúr", kashmiri: "Gur", english: "Horse", category: "animals", type: "Jandaar", icon: "fa-horse" },
+            { burushaski: "Biá", kashmiri: "Gav", english: "Cow", category: "animals", type: "Jandaar", icon: "fa-cow" },
+            { burushaski: "Bus", kashmiri: "Bror", english: "Cat", category: "animals", type: "Jandaar", icon: "fa-cat" },
+            { burushaski: "Qaqá", kashmiri: "Kaav", english: "Crow", category: "animals", type: "Balaso", icon: "fa-crow" },
+            { burushaski: "Dáudal", kashmiri: "Kotur", english: "Pigeon", category: "animals", type: "Balaso", icon: "fa-dove" },
+            
+            // Food & Crops (Famol/Hoycin) - NEW
+            { burushaski: "Ju", kashmiri: "Tser", english: "Apricot", category: "food", type: "Famol", icon: "fa-lemon" },
+            { burushaski: "Phaphá", kashmiri: "Tsoonth", english: "Apple", category: "food", type: "Famol", icon: "fa-apple-alt" },
+            { burushaski: "Ghir", kashmiri: "Dooyn", english: "Walnut", category: "food", type: "Famol", icon: "fa-brain" },
+            { burushaski: "Pápu", kashmiri: "Aloo", english: "Potato", category: "food", type: "Hoycin", icon: "fa-carrot" },
+            { burushaski: "Gupí", kashmiri: "Bandgobhi", english: "Cabbage", category: "food", type: "Hoycin", icon: "fa-leaf" },
+
+            // Nature (Khircanc) - NEW
+            { burushaski: "Tom", kashmiri: "Kul", english: "Tree", category: "nature", type: "Khircanc", icon: "fa-tree" },
+            { burushaski: "Chish", kashmiri: "Sangur/Pahad", english: "Mountain", category: "nature", type: "Nature", icon: "fa-mountain" },
+            { burushaski: "Sinda", kashmiri: "Dariya", english: "River", category: "nature", type: "Nature", icon: "fa-water" },
+
+            // Common Nouns (Existing)
             { burushaski: "Hir", kashmiri: "Mohnyu", english: "Man", category: "common", type: "Noun", icon: "fa-male" },
             { burushaski: "Guśi", kashmiri: "Zanan", english: "Woman", category: "common", type: "Noun", icon: "fa-female" },
             { burushaski: "Dasén", kashmiri: "Koor", english: "Girl", category: "common", type: "Noun", icon: "fa-child" },
@@ -285,6 +307,9 @@
                 if(item.category === 'time') tagColor = "bg-green-100 text-green-600";
                 if(item.category === 'phrases') tagColor = "bg-purple-100 text-purple-600";
                 if(item.category === 'pronouns') tagColor = "bg-orange-100 text-orange-600";
+                if(item.category === 'animals') tagColor = "bg-red-100 text-red-600";
+                if(item.category === 'food') tagColor = "bg-yellow-100 text-yellow-600";
+                if(item.category === 'nature') tagColor = "bg-emerald-100 text-emerald-600";
 
                 card.innerHTML = `
                     <div class="card-pattern bg-gray-50">
