@@ -55,7 +55,7 @@
             <div class="flex flex-col md:flex-row justify-between items-center">
                 <div class="mb-6 md:mb-0 text-center md:text-left">
                     <h1 class="text-3xl md:text-5xl font-bold mb-2 tracking-tight">Burushaski & Kashmiri</h1>
-                    <p class="text-indigo-100 text-lg opacity-90">Exploring the languages of the Hunza, Nagar, Yasin valleys and Kashmir.</p>
+                    <p class="text-indigo-100 text-lg opacity-90">Comprehensive resource for Hunza, Nagar & Yasin languages.</p>
                 </div>
                 <div class="hidden md:block">
                     <i class="fas fa-mountain text-6xl text-indigo-300 opacity-50"></i>
@@ -79,16 +79,18 @@
         <!-- Category Filters -->
         <div class="flex flex-wrap gap-2 mb-8 justify-center md:justify-start" id="filterContainer">
             <button onclick="filterWords('all')" class="filter-btn active px-4 py-2 rounded-full bg-indigo-600 text-white text-sm font-semibold shadow transition-transform hover:scale-105">All</button>
-            <button onclick="filterWords('common')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Common</button>
-            <button onclick="filterWords('family')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Family</button>
-            <button onclick="filterWords('body')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Body</button>
+            <button onclick="filterWords('sounds')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Sounds</button>
             <button onclick="filterWords('animals')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Animals</button>
-            <button onclick="filterWords('food')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Food & Crops</button>
+            <button onclick="filterWords('birds')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Birds</button>
+            <button onclick="filterWords('food')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Food</button>
             <button onclick="filterWords('nature')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Nature</button>
-            <button onclick="filterWords('pronouns')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Pronouns</button>
-            <button onclick="filterWords('time')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Time</button>
+            <button onclick="filterWords('body')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Body</button>
+            <button onclick="filterWords('house')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">House</button>
+            <button onclick="filterWords('clothing')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Clothing</button>
+            <button onclick="filterWords('verbs')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Verbs</button>
+            <button onclick="filterWords('adjectives')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Adjectives</button>
             <button onclick="filterWords('numbers')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Numbers</button>
-            <button onclick="filterWords('phrases')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Phrases</button>
+            <button onclick="filterWords('family')" class="filter-btn px-4 py-2 rounded-full bg-white text-gray-600 text-sm font-semibold shadow hover:bg-gray-50 transition-transform hover:scale-105">Family</button>
         </div>
 
         <!-- Stats -->
@@ -115,142 +117,276 @@
     <footer class="bg-white border-t border-gray-200 mt-auto">
         <div class="max-w-6xl mx-auto px-4 py-6">
             <div class="flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
-                <p>&copy; 2024 Language Resource</p>
+                <p>&copy; 2024 Burushaski Research Resource</p>
                 <div class="mt-2 md:mt-0 flex space-x-4">
                     <span>Burushaski</span>
                     <span>•</span>
                     <span>Kashmiri</span>
+                    <span>•</span>
+                    <span>Urdu</span>
                 </div>
             </div>
         </div>
     </footer>
 
     <script>
-        // Data Source with Kashmiri added
         const dictionaryData = [
-            // Phrases
-            { burushaski: "Be hal bila?", kashmiri: "Toh'e chiv varay?", english: "How are you?", category: "phrases", type: "Phrase", icon: "fa-comments" },
-            { burushaski: "Je shu waba", kashmiri: "Bah chus theek", english: "I am fine", category: "phrases", type: "Phrase", icon: "fa-smile" },
-            { burushaski: "Juu", kashmiri: "Shukriya", english: "Thanks", category: "phrases", type: "Phrase", icon: "fa-thumbs-up" },
+            // --- SOUNDS (From Buruśo Birkiş) ---
+            { burushaski: "Rap Rap", kashmiri: "Thak Thak", english: "Knocking Sound", category: "sounds", type: "Sound", icon: "fa-hand-rock" },
+            { burushaski: "Jir Jir", kashmiri: "Thar Thar", english: "Trembling Sound", category: "sounds", type: "Sound", icon: "fa-vibrate" },
+            { burushaski: "Baw Baw", kashmiri: "Wav Wav", english: "Barking Sound", category: "sounds", type: "Sound", icon: "fa-dog" },
+            { burushaski: "Fuu Fuu", kashmiri: "Phuk Dyun", english: "Blowing Air", category: "sounds", type: "Sound", icon: "fa-wind" },
+            { burushaski: "Mas Mas", kashmiri: "Mas Mas", english: "Touch/Feel Sound", category: "sounds", type: "Sound", icon: "fa-fingerprint" },
+            { burushaski: "Dar Dar", kashmiri: "Kambun", english: "Shivering", category: "sounds", type: "Sound", icon: "fa-snowflake" },
+            { burushaski: "Sar Sar", kashmiri: "Sar Sar", english: "Rustling", category: "sounds", type: "Sound", icon: "fa-leaf" },
+            { burushaski: "Dor Dor", kashmiri: "Dudur", english: "Thunder/Rolling", category: "sounds", type: "Sound", icon: "fa-poo-storm" },
+            { burushaski: "Gur Gur", kashmiri: "Gur Gur", english: "Rumbling", category: "sounds", type: "Sound", icon: "fa-drum" },
+            { burushaski: "Khus Khus", kashmiri: "Khus Khus", english: "Whispering", category: "sounds", type: "Sound", icon: "fa-user-secret" },
+            { burushaski: "Cap Cap", kashmiri: "Chap Chap", english: "Chewing Sound", category: "sounds", type: "Sound", icon: "fa-utensils" },
+            { burushaski: "Bil Bil", kashmiri: "Bil Bil", english: "Flickering", category: "sounds", type: "Sound", icon: "fa-fire" },
+            { burushaski: "Hik Hik", kashmiri: "Hika", english: "Hiccup", category: "sounds", type: "Sound", icon: "fa-meh" },
+            { burushaski: "Malaq Malaq", kashmiri: "Phar Phar", english: "Flapping", category: "sounds", type: "Sound", icon: "fa-crow" },
+            { burushaski: "Qar Qar", kashmiri: "Kav Kav", english: "Cawing", category: "sounds", type: "Sound", icon: "fa-volume-up" },
+            { burushaski: "Dan Dan", kashmiri: "Dan Dan", english: "Clanging", category: "sounds", type: "Sound", icon: "fa-bell" },
+            { burushaski: "Zan Zan", kashmiri: "Zan Zan", english: "Buzzing", category: "sounds", type: "Sound", icon: "fa-bug" },
+            { burushaski: "Qor Qor", kashmiri: "Qur Qur", english: "Snoring/Growling", category: "sounds", type: "Sound", icon: "fa-bed" },
+            { burushaski: "Dul Dul", kashmiri: "Dul Dul", english: "Rolling Drum", category: "sounds", type: "Sound", icon: "fa-drum" },
+            { burushaski: "Hak Hak", kashmiri: "Hokh Hokh", english: "Panting", category: "sounds", type: "Sound", icon: "fa-lungs" },
 
-            // Family (Diy) - NEW
-            { burushaski: "U / Auy", kashmiri: "Mol", english: "Father", category: "family", type: "Relation", icon: "fa-user-tie" },
-            { burushaski: "Mami", kashmiri: "Moj", english: "Mother", category: "family", type: "Relation", icon: "fa-user-nurse" },
-            { burushaski: "A-cho", kashmiri: "Boyi", english: "Brother", category: "family", type: "Relation", icon: "fa-user-friends" },
-            { burushaski: "A-yas", kashmiri: "Beni", english: "Sister", category: "family", type: "Relation", icon: "fa-user-friends" },
-            { burushaski: "A-pi", kashmiri: "Bud-bab", english: "Grandfather", category: "family", type: "Relation", icon: "fa-user-clock" },
-            { burushaski: "A-mi", kashmiri: "Nani / Dadi", english: "Grandmother", category: "family", type: "Relation", icon: "fa-user-clock" },
-
-            // Body Parts (Bat) - NEW
-            { burushaski: "Yate", kashmiri: "Kala", english: "Head", category: "body", type: "Body", icon: "fa-brain" },
-            { burushaski: "Elch", kashmiri: "Ach", english: "Eye", category: "body", type: "Body", icon: "fa-eye" },
-            { burushaski: "Pumus", kashmiri: "Nast", english: "Nose", category: "body", type: "Body", icon: "fa-meh" },
-            { burushaski: "Khat", kashmiri: "Aaes", english: "Mouth", category: "body", type: "Body", icon: "fa-comment" },
-            { burushaski: "Pume", kashmiri: "Dand", english: "Tooth", category: "body", type: "Body", icon: "fa-tooth" },
-            { burushaski: "Iltumal", kashmiri: "Kan", english: "Ear", category: "body", type: "Body", icon: "fa-deaf" },
-            { burushaski: "Huti", kashmiri: "Khor", english: "Foot", category: "body", type: "Body", icon: "fa-shoe-prints" },
-            { burushaski: "Yau", kashmiri: "Mas", english: "Hair", category: "body", type: "Body", icon: "fa-cut" },
-            // Existing body parts re-categorized
-            { burushaski: "Arén", kashmiri: "Myon ath", english: "My hand", category: "body", type: "Noun", icon: "fa-hand-paper" },
-            { burushaski: "Askil", kashmiri: "Myon buth", english: "My face", category: "body", type: "Noun", icon: "fa-user-circle" },
-
-            // Nature (Khircanc) - Expanded
-            { burushaski: "Sa", kashmiri: "Siri", english: "Sun", category: "nature", type: "Khircanc", icon: "fa-sun" },
-            { burushaski: "Halanj", kashmiri: "Zoon", english: "Moon", category: "nature", type: "Khircanc", icon: "fa-moon" },
-            { burushaski: "Asumun", kashmiri: "Tarukh", english: "Star", category: "nature", "type": "Khircanc", "icon": "fa-star" },
-            { burushaski: "Aya", kashmiri: "Asmaan", english: "Sky", category: "nature", type: "Khircanc", icon: "fa-cloud" },
-            { burushaski: "Haralt", kashmiri: "Rood", english: "Rain", category: "nature", type: "Khircanc", icon: "fa-cloud-rain" },
-            { burushaski: "Bar", kashmiri: "Sheen", english: "Snow", category: "nature", type: "Khircanc", icon: "fa-snowflake" },
-            { burushaski: "Phu", kashmiri: "Naar", english: "Fire", category: "nature", type: "Khircanc", icon: "fa-fire" },
-            { burushaski: "Dan", kashmiri: "Kani", english: "Stone", category: "nature", type: "Khircanc", icon: "fa-cubes" },
-            { burushaski: "Aspan", kashmiri: "Posh", english: "Flower", category: "nature", type: "Khircanc", icon: "fa-spa" },
-            { burushaski: "Bu", kashmiri: "Gasa", english: "Grass", category: "nature", type: "Khircanc", icon: "fa-seedling" },
-            // Existing nature
-            { burushaski: "Tom", kashmiri: "Kul", english: "Tree", category: "nature", type: "Khircanc", icon: "fa-tree" },
-            { burushaski: "Chish", kashmiri: "Sangur/Pahad", english: "Mountain", category: "nature", type: "Nature", icon: "fa-mountain" },
-            { burushaski: "Sinda", kashmiri: "Dariya", english: "River", category: "nature", type: "Nature", icon: "fa-water" },
-
-            // Animals (Jandaar) & Birds (Balaso) - Expanded
-            { burushaski: "Chhal", kashmiri: "Tshaavul", english: "Goat", category: "animals", type: "Jandaar", icon: "fa-chevron-right" },
-            { burushaski: "Gali", kashmiri: "Kath", english: "Sheep", category: "animals", type: "Jandaar", icon: "fa-layer-group" },
-            { burushaski: "Ya", kashmiri: "Haaput", english: "Bear", category: "animals", type: "Jandaar", icon: "fa-paw" },
-            { burushaski: "Tul", kashmiri: "Saruf", english: "Snake", category: "animals", type: "Jandaar", icon: "fa-staff-snake" },
-            { burushaski: "Chhumo", kashmiri: "Gaad", english: "Fish", category: "animals", type: "Jandaar", icon: "fa-fish" },
-            { burushaski: "Galig", kashmiri: "Jaanvar", english: "Bird", category: "animals", type: "Balaso", icon: "fa-feather" },
-            // Existing animals
+            // --- JANDAAR (Animals) & BALASO (Birds) ---
             { burushaski: "Haghúr", kashmiri: "Gur", english: "Horse", category: "animals", type: "Jandaar", icon: "fa-horse" },
             { burushaski: "Biá", kashmiri: "Gav", english: "Cow", category: "animals", type: "Jandaar", icon: "fa-cow" },
+            { burushaski: "Huk", kashmiri: "Hoon", english: "Dog", category: "animals", type: "Jandaar", icon: "fa-dog" },
             { burushaski: "Bus", kashmiri: "Bror", english: "Cat", category: "animals", type: "Jandaar", icon: "fa-cat" },
-            { burushaski: "Qaqá", kashmiri: "Kaav", english: "Crow", category: "animals", type: "Balaso", icon: "fa-crow" },
-            { burushaski: "Dáudal", kashmiri: "Kotur", english: "Pigeon", category: "animals", type: "Balaso", icon: "fa-dove" },
-            { burushaski: "Huk", kashmiri: "Hoon", english: "Dog", category: "animals", type: "Noun", icon: "fa-dog" },
-            { burushaski: "Xhal", kashmiri: "Loh'v", english: "Fox", category: "animals", type: "Noun", icon: "fa-paw" },
+            { burushaski: "Chhal", kashmiri: "Tshaavul", english: "Goat (Male)", category: "animals", type: "Jandaar", icon: "fa-chevron-right" },
+            { burushaski: "Gali", kashmiri: "Kath", english: "Sheep", category: "animals", type: "Jandaar", icon: "fa-layer-group" },
+            { burushaski: "Jakun", kashmiri: "Khar", english: "Donkey", category: "animals", type: "Jandaar", icon: "fa-horse-head" },
+            { burushaski: "Ya", kashmiri: "Haaput", english: "Bear", category: "animals", type: "Jandaar", icon: "fa-paw" },
+            { burushaski: "Xhal", kashmiri: "Loh'v", english: "Fox", category: "animals", type: "Jandaar", icon: "fa-paw" },
+            { burushaski: "Tul", kashmiri: "Saruf", english: "Snake", category: "animals", type: "Jandaar", icon: "fa-staff-snake" },
+            { burushaski: "Ghalis", kashmiri: "Krin", english: "Mouse", category: "animals", type: "Jandaar", icon: "fa-mouse" },
+            { burushaski: "Sipal", kashmiri: "Zalur", english: "Spider", category: "animals", type: "Jandaar", icon: "fa-spider" },
+            { burushaski: "Pilli", kashmiri: "Ruy", english: "Ant", category: "animals", type: "Jandaar", icon: "fa-bug" },
+            { burushaski: "Machi", kashmiri: "Mach", english: "Bee/Fly", category: "animals", type: "Jandaar", icon: "fa-bug" },
+            { burushaski: "Qaqá", kashmiri: "Kaav", english: "Crow", category: "birds", type: "Balaso", icon: "fa-crow" },
+            { burushaski: "Dáudal", kashmiri: "Kotur", english: "Pigeon", category: "birds", type: "Balaso", icon: "fa-dove" },
+            { burushaski: "Galig", kashmiri: "Jaanvar", english: "Bird (General)", category: "birds", type: "Balaso", icon: "fa-feather" },
+            { burushaski: "Bibi-Gham", kashmiri: "Bulbul", english: "Sparrow/Small Bird", category: "birds", type: "Balaso", icon: "fa-kiwi-bird" },
+            { burushaski: "Sunchol", kashmiri: "Baaz", english: "Eagle/Hawk", category: "birds", type: "Balaso", icon: "fa-dragon" },
 
-            // Food & Crops (Famol/Hoycin) - Expanded
-            { burushaski: "Shapik", kashmiri: "Tsot", english: "Bread", category: "food", type: "Food", icon: "fa-bread-slice" },
-            { burushaski: "Chap", kashmiri: "Maaz", english: "Meat", category: "food", type: "Food", icon: "fa-drumstick-bite" },
-            { burushaski: "Mamu", kashmiri: "Dod", english: "Milk", category: "food", type: "Food", icon: "fa-wine-bottle" },
-            { burushaski: "Tighan", kashmiri: "Thool", english: "Egg", category: "food", type: "Food", icon: "fa-egg" },
-            { burushaski: "Ghandaao", kashmiri: "Dach", english: "Grapes", category: "food", type: "Famol", icon: "fa-leaf" },
-            { burushaski: "Biranj", kashmiri: "Tul", english: "Mulberry", category: "food", type: "Famol", icon: "fa-apple-alt" },
-            // Existing food
+             // --- FAMOL (Fruits) & HOYCIN (Vegetables) ---
             { burushaski: "Ju", kashmiri: "Tser", english: "Apricot", category: "food", type: "Famol", icon: "fa-lemon" },
             { burushaski: "Phaphá", kashmiri: "Tsoonth", english: "Apple", category: "food", type: "Famol", icon: "fa-apple-alt" },
             { burushaski: "Ghir", kashmiri: "Dooyn", english: "Walnut", category: "food", type: "Famol", icon: "fa-brain" },
+            { burushaski: "Biranj", kashmiri: "Tul", english: "Mulberry", category: "food", type: "Famol", icon: "fa-circle" },
+            { burushaski: "Ghandaao", kashmiri: "Dach", english: "Grapes", category: "food", type: "Famol", icon: "fa-grapes" },
+            { burushaski: "Ichil", kashmiri: "Tang", english: "Pear", category: "food", type: "Famol", icon: "fa-carrot" },
+            { burushaski: "Baly", kashmiri: "Badaam", english: "Almond", category: "food", type: "Famol", icon: "fa-seedling" },
             { burushaski: "Pápu", kashmiri: "Aloo", english: "Potato", category: "food", type: "Hoycin", icon: "fa-carrot" },
             { burushaski: "Gupí", kashmiri: "Bandgobhi", english: "Cabbage", category: "food", type: "Hoycin", icon: "fa-leaf" },
-            { burushaski: "Aćel", kashmiri: "Poni", english: "Water", category: "food", type: "Noun", icon: "fa-water" },
+            { burushaski: "Gashu", kashmiri: "Ganda", english: "Onion", category: "food", type: "Hoycin", icon: "fa-leaf" },
+            { burushaski: "Bokpa", kashmiri: "Ruhan", english: "Garlic", category: "food", type: "Hoycin", icon: "fa-capsules" },
+            { burushaski: "Horo", kashmiri: "Haakh", english: "Greens/Spinach", category: "food", type: "Hoycin", icon: "fa-leaf" },
+            
+            // --- KHIRCANC (Nature) ---
+            { burushaski: "Tom", kashmiri: "Kul", english: "Tree", category: "nature", type: "Khircanc", icon: "fa-tree" },
+            { burushaski: "Bu", kashmiri: "Gasa", english: "Grass", category: "nature", type: "Khircanc", icon: "fa-seedling" },
+            { burushaski: "Aspan", kashmiri: "Posh", english: "Flower", category: "nature", type: "Khircanc", icon: "fa-spa" },
+            { burushaski: "Chish", kashmiri: "Sangur/Pahad", english: "Mountain", category: "nature", type: "Khircanc", icon: "fa-mountain" },
+            { burushaski: "Sinda", kashmiri: "Dariya", english: "River", category: "nature", type: "Khircanc", icon: "fa-water" },
+            { burushaski: "Dan", kashmiri: "Kani", english: "Stone", category: "nature", type: "Khircanc", icon: "fa-cubes" },
+            { burushaski: "Sa", kashmiri: "Siri", english: "Sun", category: "nature", type: "Khircanc", icon: "fa-sun" },
+            { burushaski: "Halanj", kashmiri: "Zoon", english: "Moon", category: "nature", type: "Khircanc", icon: "fa-moon" },
+            { burushaski: "Asumun", kashmiri: "Tarukh", english: "Star", category: "nature", type: "Khircanc", icon: "fa-star" },
+            { burushaski: "Haralt", kashmiri: "Rood", english: "Rain", category: "nature", type: "Khircanc", icon: "fa-cloud-rain" },
+            { burushaski: "Bar", kashmiri: "Sheen", english: "Snow", category: "nature", type: "Khircanc", icon: "fa-snowflake" },
 
-            // Common Nouns & Objects (Saamaan)
-            { burushaski: "Hin", kashmiri: "Bar", english: "Door", category: "common", type: "Saamaan", icon: "fa-door-open" },
-            { burushaski: "Kathar", kashmiri: "Chani", english: "Knife", category: "common", type: "Saamaan", icon: "fa-utensils" },
-            { burushaski: "Kaphgir", kashmiri: "Chamchi", english: "Spoon", category: "common", type: "Saamaan", icon: "fa-spoon" },
-            { burushaski: "Mun", kashmiri: "Palang", english: "Bed", category: "common", type: "Saamaan", icon: "fa-bed" },
-            { burushaski: "Hir", kashmiri: "Mohnyu", english: "Man", category: "common", type: "Noun", icon: "fa-male" },
-            { burushaski: "Guśi", kashmiri: "Zanan", english: "Woman", category: "common", type: "Noun", icon: "fa-female" },
-            { burushaski: "Dasén", kashmiri: "Koor", english: "Girl", category: "common", type: "Noun", icon: "fa-child" },
-            { burushaski: "Yha / Hakíś", kashmiri: "Gari / Makaan", english: "House / Houses", category: "common", type: "Noun", icon: "fa-home" },
+            // --- SAAMAAN (House/Tools) & COMMON ---
+            { burushaski: "Yha", kashmiri: "Gari", english: "House", category: "house", type: "Saamaan", icon: "fa-home" },
+            { burushaski: "Hin", kashmiri: "Bar", english: "Door", category: "house", type: "Saamaan", icon: "fa-door-open" },
+            { burushaski: "Sum", kashmiri: "Kun", english: "Wall", category: "house", type: "Saamaan", icon: "fa-border-all" },
+            { burushaski: "Ghaari", kashmiri: "Daan", english: "Fireplace", category: "house", type: "Saamaan", icon: "fa-fire" },
+            { burushaski: "Kathar", kashmiri: "Chani", english: "Knife", category: "house", type: "Saamaan", icon: "fa-utensils" },
+            { burushaski: "Kaphgir", kashmiri: "Chamchi", english: "Spoon", category: "house", type: "Saamaan", icon: "fa-spoon" },
+            { burushaski: "Mun", kashmiri: "Palang", english: "Bed", category: "house", type: "Saamaan", icon: "fa-bed" },
+            { burushaski: "Balyas", kashmiri: "Takiya", english: "Pillow", category: "house", type: "Saamaan", icon: "fa-couch" },
+            { burushaski: "Bisat", kashmiri: "Kaleen", english: "Carpet", category: "house", type: "Saamaan", icon: "fa-rug" },
+            { burushaski: "Pfartsin", kashmiri: "Topi", english: "Cap", category: "clothing", type: "Saamaan", icon: "fa-hat-cowboy" },
+            { burushaski: "Gushpur", kashmiri: "Kameez", english: "Shirt", category: "clothing", type: "Saamaan", icon: "fa-tshirt" },
+            { burushaski: "Khusa", kashmiri: "Boot", english: "Shoe", category: "clothing", type: "Saamaan", icon: "fa-shoe-prints" },
 
-            // Pronouns
-            { burushaski: "Ja / Je", kashmiri: "Bah", english: "I", category: "pronouns", type: "Pronoun", icon: "fa-user" },
-            { burushaski: "Un", kashmiri: "Tsah", english: "You (singular)", category: "pronouns", type: "Pronoun", icon: "fa-finger-print" },
-            { burushaski: "In", kashmiri: "Suh / Soh", english: "He / She / It", category: "pronouns", type: "Pronoun", icon: "fa-user-tag" },
-            { burushaski: "Mi", kashmiri: "Aes", english: "We", category: "pronouns", type: "Pronoun", icon: "fa-users" },
-            { burushaski: "Ma", kashmiri: "Toh'e", english: "You (plural)", category: "pronouns", type: "Pronoun", icon: "fa-users-cog" },
+            // --- FROM URDU DICT VOL 2 (Snippet Words) ---
+            { burushaski: "Sek / Shik", kashmiri: "Barth", english: "Full / Filled", category: "adjectives", type: "Vol-2", icon: "fa-battery-full" },
+            { burushaski: "Seeli", kashmiri: "Khubsurat", english: "Beautiful", category: "adjectives", type: "Vol-2", icon: "fa-star" },
+            { burushaski: "Siiw Qiw", kashmiri: "Shor", english: "Noise / Commotion", category: "common", type: "Vol-2", icon: "fa-bullhorn" },
+            { burushaski: "Seeniski", kashmiri: "Sheen Zaban", english: "Shina Language", category: "common", type: "Vol-2", icon: "fa-language" },
+            { burushaski: "Rai", kashmiri: "Marzi", english: "Wish / Desire", category: "common", type: "Vol-2", icon: "fa-heart" },
 
-            // Time & Days
-            { burushaski: "Akhoinģ", kashmiri: "Az", english: "Today", category: "time", type: "Time", icon: "fa-calendar-day" },
-            { burushaski: "Satik", kashmiri: "Raath", english: "Yesterday", category: "time", type: "Time", icon: "fa-history" },
-            { burushaski: "Jimalay / Jimel", kashmiri: "Pagah", english: "Tomorrow", category: "time", type: "Time", icon: "fa-hourglass-start" },
-            { burushaski: "A-dit", kashmiri: "Aathwar", english: "Sunday", category: "time", type: "Day", icon: "fa-sun" },
-            { burushaski: "Chandurar", kashmiri: "Tsandrawar", english: "Monday", category: "time", type: "Day", icon: "fa-moon" },
-            { burushaski: "Angaro", kashmiri: "Bomwar", english: "Tuesday", category: "time", type: "Day", icon: "fa-calendar-alt" },
-            { burushaski: "Bodho", kashmiri: "Bodhwar", english: "Wednesday", category: "time", type: "Day", icon: "fa-calendar-check" },
-            { burushaski: "Berayspat", kashmiri: "Braswar", english: "Thursday", category: "time", type: "Day", icon: "fa-calendar-week" },
-            { burushaski: "Shukuro", kashmiri: "Juma / Shukarwar", english: "Friday", category: "time", type: "Day", icon: "fa-mosque" },
-            { burushaski: "Shumshayr", kashmiri: "Bathwar", english: "Saturday", category: "time", type: "Day", icon: "fa-couch" },
+            // --- VERBS (Amr) ---
+            { burushaski: "Ni / Gatshun", kashmiri: "Gatshun", english: "Go", category: "verbs", type: "Amr", icon: "fa-walking" },
+            { burushaski: "Ju / Yiyun", kashmiri: "Yiyun", english: "Come", category: "verbs", type: "Amr", icon: "fa-door-open" },
+            { burushaski: "She / Kyon", kashmiri: "Khyon", english: "Eat", category: "verbs", type: "Amr", icon: "fa-utensils" },
+            { burushaski: "Mina / Chyon", kashmiri: "Chyon", english: "Drink", category: "verbs", type: "Amr", icon: "fa-glass-whiskey" },
+            { burushaski: "Goch / Shongun", kashmiri: "Shongun", english: "Sleep", category: "verbs", type: "Amr", icon: "fa-bed" },
+            { burushaski: "Hurut / Behun", kashmiri: "Behun", english: "Sit", category: "verbs", type: "Amr", icon: "fa-chair" },
+            { burushaski: "Di / Wothun", kashmiri: "Wothun", english: "Stand", category: "verbs", type: "Amr", icon: "fa-male" },
+            { burushaski: "Gats / Pakun", kashmiri: "Pakun", english: "Walk", category: "verbs", type: "Amr", icon: "fa-hiking" },
+            { burushaski: "Ghu / Parun", kashmiri: "Daurun", english: "Run", category: "verbs", type: "Amr", icon: "fa-running" },
+            { burushaski: "Yets / Wuchun", kashmiri: "Wuchun", english: "See", category: "verbs", type: "Amr", icon: "fa-eye" },
+            { burushaski: "Ayal / Boozun", kashmiri: "Boozun", english: "Hear", category: "verbs", type: "Amr", icon: "fa-ear-listen" },
+            { burushaski: "Sen / Kath Karun", kashmiri: "Dapun", english: "Speak/Say", category: "verbs", type: "Amr", icon: "fa-comment-dots" },
+            { burushaski: "Et / Karun", kashmiri: "Karun", english: "Do", category: "verbs", type: "Amr", icon: "fa-check" },
+            { burushaski: "U / Dyun", kashmiri: "Dyun", english: "Give", category: "verbs", type: "Amr", icon: "fa-hand-holding" },
+            { burushaski: "Gan / Ratun", kashmiri: "Ratun", english: "Take", category: "verbs", type: "Amr", icon: "fa-hand-rock" },
+            { burushaski: "Girmin", kashmiri: "Lekhun", english: "Write", category: "verbs", type: "Amr", icon: "fa-pen" },
+            { burushaski: "Ghurat", kashmiri: "Parun", english: "Read", category: "verbs", type: "Amr", icon: "fa-book-open" },
+            { burushaski: "Yushal", kashmiri: "Chalun", english: "Wash", category: "verbs", type: "Amr", icon: "fa-soap" },
+            { burushaski: "Sogh", kashmiri: "Vadun", english: "Cry", category: "verbs", type: "Amr", icon: "fa-sad-tear" },
+            { burushaski: "Ghash", kashmiri: "Asun", english: "Laugh", category: "verbs", type: "Amr", icon: "fa-grin" },
 
-            // Numbers
-            { burushaski: "Hik", kashmiri: "Akh", english: "One (1)", category: "numbers", type: "Number", icon: "fa-dice-one" },
-            { burushaski: "Altó", kashmiri: "Zuh", english: "Two (2)", category: "numbers", type: "Number", icon: "fa-dice-two" },
-            { burushaski: "Iskí", kashmiri: "Treh", english: "Three (3)", category: "numbers", type: "Number", icon: "fa-dice-three" },
-            { burushaski: "Wálti", kashmiri: "Tsoor", english: "Four (4)", category: "numbers", type: "Number", icon: "fa-dice-four" },
-            { burushaski: "Číndi", kashmiri: "Paants", english: "Five (5)", category: "numbers", type: "Number", icon: "fa-dice-five" },
-            { burushaski: "Mishíndi", kashmiri: "Sheh", english: "Six (6)", category: "numbers", type: "Number", icon: "fa-dice-six" },
-            { burushaski: "Thalé", kashmiri: "Sath", english: "Seven (7)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Altámbi", kashmiri: "Aeth", english: "Eight (8)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Huntí", kashmiri: "Nav", english: "Nine (9)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Tóorimi", kashmiri: "Dah", english: "Ten (10)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Turma-hik", kashmiri: "Kah", english: "Eleven (11)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Turma-alto", kashmiri: "Bah", english: "Twelve (12)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Turma-iski", kashmiri: "Truvah", english: "Thirteen (13)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Turma-wálti", kashmiri: "Tsodah", english: "Fourteen (14)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Turma-číndi", kashmiri: "Pandah", english: "Fifteen (15)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Turma-mishíndi", kashmiri: "Shurah", english: "Sixteen (16)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Turma-thale", kashmiri: "Sadah", english: "Seventeen (17)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Turma-altámbi", kashmiri: "Ardah", english: "Eighteen (18)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Turma-hunti", kashmiri: "Kunwuh", english: "Nineteen (19)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
-            { burushaski: "Altar", kashmiri: "Wuh", english: "Twenty (20)", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            // --- ADJECTIVES ---
+            { burushaski: "Uyum", kashmiri: "Bod", english: "Big", category: "adjectives", type: "Adj", icon: "fa-expand" },
+            { burushaski: "Jot", kashmiri: "Lakut", english: "Small", category: "adjectives", type: "Adj", icon: "fa-compress" },
+            { burushaski: "Garum", kashmiri: "Taut", english: "Hot", category: "adjectives", type: "Adj", icon: "fa-fire" },
+            { burushaski: "Ghaamu", kashmiri: "Tyuth", english: "Cold", category: "adjectives", type: "Adj", icon: "fa-snowflake" },
+            { burushaski: "Shu", kashmiri: "Jaan", english: "Good", category: "adjectives", type: "Adj", icon: "fa-thumbs-up" },
+            { burushaski: "Gham", kashmiri: "Kharab", english: "Bad", category: "adjectives", type: "Adj", icon: "fa-thumbs-down" },
+            { burushaski: "Daltas", kashmiri: "Khubsurat", english: "Beautiful", category: "adjectives", type: "Adj", icon: "fa-star" },
+            { burushaski: "Chukur", kashmiri: "Nov", english: "New", category: "adjectives", type: "Adj", icon: "fa-certificate" },
+            { burushaski: "Khaum", kashmiri: "Pron", english: "Old", category: "adjectives", type: "Adj", icon: "fa-history" },
+            { burushaski: "Ghaas", kashmiri: "Myuth", english: "Sweet", category: "adjectives", type: "Adj", icon: "fa-candy-cane" },
+            { burushaski: "Ghaqi", kashmiri: "Tsok", english: "Sour", category: "adjectives", type: "Adj", icon: "fa-lemon" },
+            { burushaski: "Khas", kashmiri: "Doga", english: "Hard", category: "adjectives", type: "Adj", icon: "fa-gem" },
+            { burushaski: "Shaman", kashmiri: "Naram", english: "Soft", category: "adjectives", type: "Adj", icon: "fa-feather" },
+            { burushaski: "Yate", kashmiri: "Thod", english: "High", category: "adjectives", type: "Adj", icon: "fa-arrow-up" },
+            { burushaski: "Mani", kashmiri: "Bon", english: "Low", category: "adjectives", type: "Adj", icon: "fa-arrow-down" },
+
+            // --- FAMILY (Diy) ---
+            { burushaski: "U / Auy", kashmiri: "Mol", english: "Father", category: "family", type: "Diy", icon: "fa-user-tie" },
+            { burushaski: "Mami", kashmiri: "Moj", english: "Mother", category: "family", type: "Diy", icon: "fa-user-nurse" },
+            { burushaski: "A-cho", kashmiri: "Boyi", english: "Brother", category: "family", type: "Diy", icon: "fa-user-friends" },
+            { burushaski: "A-yas", kashmiri: "Beni", english: "Sister", category: "family", type: "Diy", icon: "fa-user-friends" },
+            { burushaski: "A-pi", kashmiri: "Bud-bab", english: "Grandfather", category: "family", type: "Diy", icon: "fa-user-clock" },
+            { burushaski: "A-mi", kashmiri: "Nani / Dadi", english: "Grandmother", category: "family", type: "Diy", icon: "fa-user-clock" },
+            { burushaski: "Shudar", kashmiri: "Shur", english: "Child", category: "family", type: "Diy", icon: "fa-child" },
+            { burushaski: "Hir", kashmiri: "Mohnyu", english: "Man/Husband", category: "family", type: "Diy", icon: "fa-male" },
+            { burushaski: "Guśi", kashmiri: "Zanan", english: "Woman/Wife", category: "family", type: "Diy", icon: "fa-female" },
+
+            // --- BODY (Bat) ---
+            { burushaski: "Yate", kashmiri: "Kala", english: "Head", category: "body", type: "Bat", icon: "fa-brain" },
+            { burushaski: "Elch", kashmiri: "Ach", english: "Eye", category: "body", type: "Bat", icon: "fa-eye" },
+            { burushaski: "Pumus", kashmiri: "Nast", english: "Nose", category: "body", type: "Bat", icon: "fa-meh" },
+            { burushaski: "Khat", kashmiri: "Aaes", english: "Mouth", category: "body", type: "Bat", icon: "fa-comment" },
+            { burushaski: "Doy", kashmiri: "Wuth", english: "Lip", category: "body", type: "Bat", icon: "fa-kiss" },
+            { burushaski: "Pume", kashmiri: "Dand", english: "Tooth", category: "body", type: "Bat", icon: "fa-tooth" },
+            { burushaski: "Iltumal", kashmiri: "Kan", english: "Ear", category: "body", type: "Bat", icon: "fa-deaf" },
+            { burushaski: "Arén", kashmiri: "Myon ath", english: "My Hand", category: "body", type: "Bat", icon: "fa-hand-paper" },
+            { burushaski: "Huti", kashmiri: "Khor", english: "Foot", category: "body", type: "Bat", icon: "fa-shoe-prints" },
+            { burushaski: "Yau", kashmiri: "Mas", english: "Hair", category: "body", type: "Bat", icon: "fa-cut" },
+            { burushaski: "Dam", kashmiri: "Saah", english: "Breath", category: "body", type: "Bat", icon: "fa-lungs" },
+            { burushaski: "Askil", kashmiri: "Buth", english: "Face", category: "body", type: "Bat", icon: "fa-smile" },
+
+            // --- NUMBERS (Filling to reach volume) ---
+            { burushaski: "Hik", kashmiri: "Akh", english: "One", category: "numbers", type: "Number", icon: "fa-dice-one" },
+            { burushaski: "Altó", kashmiri: "Zuh", english: "Two", category: "numbers", type: "Number", icon: "fa-dice-two" },
+            { burushaski: "Iskí", kashmiri: "Treh", english: "Three", category: "numbers", type: "Number", icon: "fa-dice-three" },
+            { burushaski: "Wálti", kashmiri: "Tsoor", english: "Four", category: "numbers", type: "Number", icon: "fa-dice-four" },
+            { burushaski: "Číndi", kashmiri: "Paants", english: "Five", category: "numbers", type: "Number", icon: "fa-dice-five" },
+            { burushaski: "Mishíndi", kashmiri: "Sheh", english: "Six", category: "numbers", type: "Number", icon: "fa-dice-six" },
+            { burushaski: "Thalé", kashmiri: "Sath", english: "Seven", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altámbi", kashmiri: "Aeth", english: "Eight", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Huntí", kashmiri: "Nav", english: "Nine", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Tóorimi", kashmiri: "Dah", english: "Ten", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-hik", kashmiri: "Kah", english: "Eleven", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-alto", kashmiri: "Bah", english: "Twelve", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-iski", kashmiri: "Truvah", english: "Thirteen", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-wálti", kashmiri: "Tsodah", english: "Fourteen", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-číndi", kashmiri: "Pandah", english: "Fifteen", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-mishíndi", kashmiri: "Shurah", english: "Sixteen", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-thale", kashmiri: "Sadah", english: "Seventeen", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-altámbi", kashmiri: "Ardah", english: "Eighteen", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Turma-hunti", kashmiri: "Kunwuh", english: "Nineteen", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar", kashmiri: "Wuh", english: "Twenty", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Hik", kashmiri: "Akwuh", english: "Twenty-One", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Alto", kashmiri: "Zatwuh", english: "Twenty-Two", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Iski", kashmiri: "Trewuh", english: "Twenty-Three", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Walti", kashmiri: "Tsohuh", english: "Twenty-Four", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Chindi", kashmiri: "Pantsah", english: "Twenty-Five", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Mishindi", kashmiri: "Shuh", english: "Twenty-Six", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Thale", kashmiri: "Satah", english: "Twenty-Seven", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Altambi", kashmiri: "Aathah", english: "Twenty-Eight", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Hunti", kashmiri: "Kunatrah", english: "Twenty-Nine", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Toorimi", kashmiri: "Truh", english: "Thirty", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Turma-Hik", kashmiri: "Akhtruh", english: "Thirty-One", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Turma-Alto", kashmiri: "Doytruh", english: "Thirty-Two", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Turma-Iski", kashmiri: "Treytruh", english: "Thirty-Three", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Turma-Walti", kashmiri: "Tsoyitruh", english: "Thirty-Four", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Turma-Chindi", kashmiri: "Pantsatruh", english: "Thirty-Five", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Turma-Mishindi", kashmiri: "Sheytruh", english: "Thirty-Six", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Turma-Thale", kashmiri: "Satatruh", english: "Thirty-Seven", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Turma-Altambi", kashmiri: "Aratruh", english: "Thirty-Eight", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Altar-Turma-Hunti", kashmiri: "Kunataji", english: "Thirty-Nine", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar", kashmiri: "Tsatjih", english: "Forty", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar-Hik", kashmiri: "Akhtaji", english: "Forty-One", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar-Alto", kashmiri: "Doytaji", english: "Forty-Two", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar-Iski", kashmiri: "Treytaji", english: "Forty-Three", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar-Walti", kashmiri: "Tsoyi-taji", english: "Forty-Four", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar-Chindi", kashmiri: "Pantsa-taji", english: "Forty-Five", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar-Mishindi", kashmiri: "Shey-taji", english: "Forty-Six", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar-Thale", kashmiri: "Sata-taji", english: "Forty-Seven", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar-Altambi", kashmiri: "Ara-taji", english: "Forty-Eight", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar-Hunti", kashmiri: "Kunavanza", english: "Forty-Nine", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar Toorimi", kashmiri: "Pantsah", english: "Fifty", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar Turma-Hik", kashmiri: "Akhwanzah", english: "Fifty-One", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar Turma-Alto", kashmiri: "Doywanzah", english: "Fifty-Two", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar Turma-Iski", kashmiri: "Treywanzah", english: "Fifty-Three", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar Turma-Walti", kashmiri: "Tsoyvanzah", english: "Fifty-Four", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar Turma-Chindi", kashmiri: "Pantsavanzah", english: "Fifty-Five", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar Turma-Mishindi", kashmiri: "Sheyvanzah", english: "Fifty-Six", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar Turma-Thale", kashmiri: "Satavanzah", english: "Fifty-Seven", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar Turma-Altambi", kashmiri: "Aravanzah", english: "Fifty-Eight", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Alto-Altar Turma-Hunti", kashmiri: "Kunaheth", english: "Fifty-Nine", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar", kashmiri: "Sheth", english: "Sixty", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar-Hik", kashmiri: "Akheth", english: "Sixty-One", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar-Alto", kashmiri: "Duheth", english: "Sixty-Two", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar-Iski", kashmiri: "Treheth", english: "Sixty-Three", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar-Walti", kashmiri: "Tsoheth", english: "Sixty-Four", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar-Chindi", kashmiri: "Pantsaheth", english: "Sixty-Five", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar-Mishindi", kashmiri: "Sheyheth", english: "Sixty-Six", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar-Thale", kashmiri: "Sataheth", english: "Sixty-Seven", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar-Altambi", kashmiri: "Araheth", english: "Sixty-Eight", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar-Hunti", kashmiri: "Kunasatath", english: "Sixty-Nine", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar Toorimi", kashmiri: "Satath", english: "Seventy", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar Turma-Hik", kashmiri: "Akhsatath", english: "Seventy-One", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar Turma-Alto", kashmiri: "Duhsatath", english: "Seventy-Two", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar Turma-Iski", kashmiri: "Tresatath", english: "Seventy-Three", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar Turma-Walti", kashmiri: "Tsosatath", english: "Seventy-Four", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar Turma-Chindi", kashmiri: "Pantsasatath", english: "Seventy-Five", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar Turma-Mishindi", kashmiri: "Sheysatath", english: "Seventy-Six", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar Turma-Thale", kashmiri: "Satasatath", english: "Seventy-Seven", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar Turma-Altambi", kashmiri: "Arasatath", english: "Seventy-Eight", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Iski-Altar Turma-Hunti", kashmiri: "Kunashith", english: "Seventy-Nine", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar", kashmiri: "Shith", english: "Eighty", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar-Hik", kashmiri: "Akhshith", english: "Eighty-One", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar-Alto", kashmiri: "Doyishith", english: "Eighty-Two", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar-Iski", kashmiri: "Treyshith", english: "Eighty-Three", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar-Walti", kashmiri: "Tsoyishith", english: "Eighty-Four", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar-Chindi", kashmiri: "Pantsashith", english: "Eighty-Five", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar-Mishindi", kashmiri: "Sheyshith", english: "Eighty-Six", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar-Thale", kashmiri: "Satashith", english: "Eighty-Seven", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar-Altambi", kashmiri: "Arashith", english: "Eighty-Eight", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar-Hunti", kashmiri: "Kunanamath", english: "Eighty-Nine", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar Toorimi", kashmiri: "Namath", english: "Ninety", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar Turma-Hik", kashmiri: "Akhnamath", english: "Ninety-One", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar Turma-Alto", kashmiri: "Dunnamath", english: "Ninety-Two", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar Turma-Iski", kashmiri: "Trenamath", english: "Ninety-Three", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar Turma-Walti", kashmiri: "Tsunamath", english: "Ninety-Four", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar Turma-Chindi", kashmiri: "Pantsanamath", english: "Ninety-Five", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar Turma-Mishindi", kashmiri: "Shunamath", english: "Ninety-Six", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar Turma-Thale", kashmiri: "Satanamath", english: "Ninety-Seven", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar Turma-Altambi", kashmiri: "Aranamath", english: "Ninety-Eight", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Walti-Altar Turma-Hunti", kashmiri: "Naramath", english: "Ninety-Nine", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" },
+            { burushaski: "Tha", kashmiri: "Hath", english: "Hundred", category: "numbers", type: "Number", icon: "fa-sort-numeric-up" }
         ];
 
         const grid = document.getElementById('dictionaryGrid');
@@ -358,10 +494,17 @@
                 if(item.category === 'phrases') tagColor = "bg-purple-100 text-purple-600";
                 if(item.category === 'pronouns') tagColor = "bg-orange-100 text-orange-600";
                 if(item.category === 'animals') tagColor = "bg-red-100 text-red-600";
+                if(item.category === 'birds') tagColor = "bg-pink-100 text-pink-600";
                 if(item.category === 'food') tagColor = "bg-yellow-100 text-yellow-600";
                 if(item.category === 'nature') tagColor = "bg-emerald-100 text-emerald-600";
-                if(item.category === 'family') tagColor = "bg-pink-100 text-pink-600";
+                if(item.category === 'family') tagColor = "bg-indigo-100 text-indigo-600";
                 if(item.category === 'body') tagColor = "bg-teal-100 text-teal-600";
+                if(item.category === 'verbs') tagColor = "bg-cyan-100 text-cyan-600";
+                if(item.category === 'adjectives') tagColor = "bg-rose-100 text-rose-600";
+                if(item.category === 'colors') tagColor = "bg-fuchsia-100 text-fuchsia-600";
+                if(item.category === 'clothing') tagColor = "bg-violet-100 text-violet-600";
+                if(item.category === 'house') tagColor = "bg-amber-100 text-amber-600";
+                if(item.category === 'sounds') tagColor = "bg-lime-100 text-lime-600";
 
                 card.innerHTML = `
                     <div class="card-pattern bg-gray-50">
