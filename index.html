@@ -14,7 +14,7 @@
             background-color: #f3f4f6;
         }
         
-        .kashmiri-text {
+        .ur-text {
             font-family: 'Noto Nastaliq Urdu', serif;
             direction: rtl;
             line-height: 1.8;
@@ -28,6 +28,21 @@
         .card-hover:hover {
             transform: translateY(-2px);
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+        }
+
+        /* Custom scrollbar for better aesthetics */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c7c7c7; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #a8a8a8; 
         }
     </style>
 </head>
@@ -59,7 +74,7 @@
             <div class="flex flex-col md:flex-row gap-4">
                 <div class="relative flex-grow">
                     <i class="fas fa-search absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
-                    <input type="text" id="searchInput" placeholder="Search Burushaski, IPA, Kashmiri, or English..." 
+                    <input type="text" id="searchInput" placeholder="Search Burushaski (Latin/Script), IPA, Kashmiri, or English..." 
                         class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all">
                 </div>
                 <div class="w-full md:w-64">
@@ -154,11 +169,12 @@
 
     <!-- JavaScript Data and Logic -->
     <script>
-        // Dictionary Data (Initial Batch of 50 Core Entries)
+        // Dictionary Data (Entries with inferred Perso-Arabic Burushaski script)
         const dictionaryData = [
             {
                 id: 1,
                 burushaski: "a",
+                bur_perso: "آ",
                 bur_ipa: "/a/",
                 bur_std: "a-",
                 kashmiri: "مےٚ",
@@ -171,6 +187,7 @@
             {
                 id: 2,
                 burushaski: "ba",
+                bur_perso: "با",
                 bur_ipa: "/bɑ/",
                 bur_std: "ba",
                 kashmiri: "چھُس",
@@ -183,6 +200,7 @@
             {
                 id: 3,
                 burushaski: "bo",
+                bur_perso: "بو",
                 bur_ipa: "/bo/",
                 bur_std: "bo",
                 kashmiri: "چھَس",
@@ -195,6 +213,7 @@
             {
                 id: 4,
                 burushaski: "chap",
+                bur_perso: "چھاپ",
                 bur_ipa: "/t͡ʃʌp/",
                 bur_std: "chap",
                 kashmiri: "ماز",
@@ -207,6 +226,7 @@
             {
                 id: 5,
                 burushaski: "chil",
+                bur_perso: "چھِل",
                 bur_ipa: "/t͡ʃil/",
                 bur_std: "chil",
                 kashmiri: "پٲنۍ",
@@ -219,6 +239,7 @@
             {
                 id: 6,
                 burushaski: "dasin",
+                bur_perso: "دَسین",
                 bur_ipa: "/dʌsin/",
                 bur_std: "dasin",
                 kashmiri: "کوٗر",
@@ -231,6 +252,7 @@
             {
                 id: 7,
                 burushaski: "hir",
+                bur_perso: "ہِر",
                 bur_ipa: "/hir/",
                 bur_std: "hir",
                 kashmiri: "مَرد",
@@ -243,6 +265,7 @@
             {
                 id: 8,
                 burushaski: "gus",
+                bur_perso: "گُس",
                 bur_ipa: "/gus/",
                 bur_std: "gus",
                 kashmiri: "زَنان",
@@ -255,6 +278,7 @@
             {
                 id: 9,
                 burushaski: "je",
+                bur_perso: "جے",
                 bur_ipa: "/d͡ʒe/",
                 bur_std: "je",
                 kashmiri: "بٔ",
@@ -267,6 +291,7 @@
             {
                 id: 10,
                 burushaski: "un",
+                bur_perso: "اُن",
                 bur_ipa: "/un/",
                 bur_std: "un",
                 kashmiri: "ژٕ",
@@ -279,6 +304,7 @@
             {
                 id: 11,
                 burushaski: "mi",
+                bur_perso: "می",
                 bur_ipa: "/mi/",
                 bur_std: "mi",
                 kashmiri: "أسۍ",
@@ -291,6 +317,7 @@
             {
                 id: 12,
                 burushaski: "ma",
+                bur_perso: "ما",
                 bur_ipa: "/ma/",
                 bur_std: "ma",
                 kashmiri: "تُہۍ",
@@ -303,6 +330,7 @@
             {
                 id: 13,
                 burushaski: "khu",
+                bur_perso: "کھو",
                 bur_ipa: "/kʰu/",
                 bur_std: "khu",
                 kashmiri: "یِم",
@@ -315,6 +343,7 @@
             {
                 id: 14,
                 burushaski: "ine",
+                bur_perso: "اِنے",
                 bur_ipa: "/ine/",
                 bur_std: "ine",
                 kashmiri: "سُہ / سۄ",
@@ -327,6 +356,7 @@
             {
                 id: 15,
                 burushaski: "sen",
+                bur_perso: "سین",
                 bur_ipa: "/sen/",
                 bur_std: "sen-",
                 kashmiri: "وَنُن",
@@ -339,6 +369,7 @@
             {
                 id: 16,
                 burushaski: "shapik",
+                bur_perso: "شپِک",
                 bur_ipa: "/ʃʌpik/",
                 bur_std: "shapik",
                 kashmiri: "ژوoٹ",
@@ -351,6 +382,7 @@
             {
                 id: 17,
                 burushaski: "gupas",
+                bur_perso: "گُپَس",
                 bur_ipa: "/gupʌs/",
                 bur_std: "gupas",
                 kashmiri: "پَمبٕ",
@@ -363,6 +395,7 @@
             {
                 id: 18,
                 burushaski: "hiles",
+                bur_perso: "ہِلیس",
                 bur_ipa: "/hiles/",
                 bur_std: "hiles",
                 kashmiri: "نێچُہ",
@@ -375,6 +408,7 @@
             {
                 id: 19,
                 burushaski: "mama",
+                bur_perso: "ماما",
                 bur_ipa: "/mʌmʌ/",
                 bur_std: "mama",
                 kashmiri: "موج",
@@ -387,6 +421,7 @@
             {
                 id: 20,
                 burushaski: "baba",
+                bur_perso: "بابا",
                 bur_ipa: "/bʌbʌ/",
                 bur_std: "baba",
                 kashmiri: "مول",
@@ -399,6 +434,7 @@
             {
                 id: 21,
                 burushaski: "altan",
+                bur_perso: "اَلتَن",
                 bur_ipa: "/ʌltʌn/",
                 bur_std: "altan",
                 kashmiri: "زٕ",
@@ -411,6 +447,7 @@
             {
                 id: 22,
                 burushaski: "han",
+                bur_perso: "ہَن",
                 bur_ipa: "/hʌn/",
                 bur_std: "han",
                 kashmiri: "اَکھ",
@@ -423,6 +460,7 @@
             {
                 id: 23,
                 burushaski: "guro",
+                bur_perso: "گُرو",
                 bur_ipa: "/guro/",
                 bur_std: "guro",
                 kashmiri: "گَرٕم",
@@ -435,6 +473,7 @@
             {
                 id: 24,
                 burushaski: "yurq",
+                bur_perso: "یُرق",
                 bur_ipa: "/jurq/",
                 bur_std: "yurq",
                 kashmiri: "یَکھ",
@@ -447,6 +486,7 @@
             {
                 id: 25,
                 burushaski: "bal",
+                bur_perso: "بَل",
                 bur_ipa: "/bʌl/",
                 bur_std: "bal",
                 kashmiri: "دیوار",
@@ -459,6 +499,7 @@
             {
                 id: 26,
                 burushaski: "tom",
+                bur_perso: "ٹوم",
                 bur_ipa: "/tom/",
                 bur_std: "tom",
                 kashmiri: "کُل",
@@ -471,6 +512,7 @@
             {
                 id: 27,
                 burushaski: "phu",
+                bur_perso: "پھو",
                 bur_ipa: "/pʰu/",
                 bur_std: "phu",
                 kashmiri: "نار",
@@ -483,6 +525,7 @@
             {
                 id: 28,
                 burushaski: "safed",
+                bur_perso: "سفید",
                 bur_ipa: "/sʌfed/",
                 bur_std: "safed",
                 kashmiri: "سَفیٖد",
@@ -495,6 +538,7 @@
             {
                 id: 29,
                 burushaski: "shuq",
+                bur_perso: "شُق",
                 bur_ipa: "/ʃuq/",
                 bur_std: "shuq",
                 kashmiri: "وُزُل",
@@ -507,6 +551,7 @@
             {
                 id: 30,
                 burushaski: "shon",
+                bur_perso: "شون",
                 bur_ipa: "/ʃon/",
                 bur_std: "shon",
                 kashmiri: "اَنہٕ گوٹ",
@@ -519,6 +564,7 @@
             {
                 id: 31,
                 burushaski: "e",
+                bur_perso: "اے",
                 bur_ipa: "/e/",
                 bur_std: "e",
                 kashmiri: "آ",
@@ -531,6 +577,7 @@
             {
                 id: 32,
                 burushaski: "be",
+                bur_perso: "بے",
                 bur_ipa: "/be/",
                 bur_std: "be",
                 kashmiri: "نہ",
@@ -543,6 +590,7 @@
             {
                 id: 33,
                 burushaski: "ni",
+                bur_perso: "نی",
                 bur_ipa: "/ni/",
                 bur_std: "ni-",
                 kashmiri: "گَژھُن",
@@ -555,6 +603,7 @@
             {
                 id: 34,
                 burushaski: "ju",
+                bur_perso: "جو",
                 bur_ipa: "/d͡ʒu/",
                 bur_std: "ju-",
                 kashmiri: "یُن",
@@ -567,6 +616,7 @@
             {
                 id: 35,
                 burushaski: "hurus",
+                bur_perso: "ہُرس",
                 bur_ipa: "/hurus/",
                 bur_std: "hurus-",
                 kashmiri: "بِہُن",
@@ -579,6 +629,7 @@
             {
                 id: 36,
                 burushaski: "shi",
+                bur_perso: "شی",
                 bur_ipa: "/ʃi/",
                 bur_std: "shi-",
                 kashmiri: "کھیوٚن",
@@ -591,6 +642,7 @@
             {
                 id: 37,
                 burushaski: "bate",
+                bur_perso: "بتے",
                 bur_ipa: "/bʌte/",
                 bur_std: "bate",
                 kashmiri: "بَتہٕ",
@@ -603,6 +655,7 @@
             {
                 id: 38,
                 burushaski: "min",
+                bur_perso: "مِن",
                 bur_ipa: "/min/",
                 bur_std: "min-",
                 kashmiri: "چوٚن",
@@ -615,6 +668,7 @@
             {
                 id: 39,
                 burushaski: "waal",
+                bur_perso: "وال",
                 bur_ipa: "/waːl/",
                 bur_std: "waal-",
                 kashmiri: "وُٹھُن",
@@ -627,6 +681,7 @@
             {
                 id: 40,
                 burushaski: "haralt",
+                bur_perso: "ہَرلت",
                 bur_ipa: "/hʌrʌlt/",
                 bur_std: "haralt",
                 kashmiri: "روٗد",
@@ -639,6 +694,7 @@
             {
                 id: 41,
                 burushaski: "huru",
+                bur_perso: "ہُرو",
                 bur_ipa: "/huru/",
                 bur_std: "huru",
                 kashmiri: "مَرد",
@@ -651,6 +707,7 @@
             {
                 id: 42,
                 burushaski: "gushingants",
+                bur_perso: "گُشنگَنٹس",
                 bur_ipa: "/guʃingʌnt͡s/",
                 bur_std: "gushingants",
                 kashmiri: "زَنانہٕ",
@@ -663,6 +720,7 @@
             {
                 id: 43,
                 burushaski: "chaman",
+                bur_perso: "چمَن",
                 bur_ipa: "/t͡ʃʌmʌn/",
                 bur_std: "chaman",
                 kashmiri: "پَکان",
@@ -675,6 +733,7 @@
             {
                 id: 44,
                 burushaski: "khan",
+                bur_perso: "کھَن",
                 bur_ipa: "/kʰʌn/",
                 bur_std: "khan",
                 kashmiri: "قَلعہٕ",
@@ -687,6 +746,7 @@
             {
                 id: 45,
                 burushaski: "shughulo",
+                bur_perso: "شُغُلو",
                 bur_ipa: "/ʃuɣulo/",
                 bur_std: "shughulo",
                 kashmiri: "کَٹھ",
@@ -699,6 +759,7 @@
             {
                 id: 46,
                 burushaski: "eskul",
+                bur_perso: "اسکول",
                 bur_ipa: "/eskul/",
                 bur_std: "eskul",
                 kashmiri: "سکوٗل",
@@ -711,6 +772,7 @@
             {
                 id: 47,
                 burushaski: "ha",
+                bur_perso: "ہا",
                 bur_ipa: "/hʌ/",
                 bur_std: "ha",
                 kashmiri: "گَرٕ",
@@ -723,6 +785,7 @@
             {
                 id: 48,
                 burushaski: "yater",
+                bur_perso: "یَتِر",
                 bur_ipa: "/jʌter/",
                 bur_std: "yater",
                 kashmiri: "مَشہٕ ہِنٛد",
@@ -735,6 +798,7 @@
             {
                 id: 49,
                 burushaski: "mar",
+                bur_perso: "مَر",
                 bur_ipa: "/mʌr/",
                 bur_std: "mar",
                 kashmiri: "گِیو",
@@ -747,6 +811,7 @@
             {
                 id: 50,
                 burushaski: "phat",
+                bur_perso: "پھَٹ",
                 bur_ipa: "/pʰʌt/",
                 bur_std: "phat",
                 kashmiri: "تراوُن",
@@ -759,6 +824,7 @@
             {
                 id: 51,
                 burushaski: "be hal be",
+                bur_perso: "بے حال بے",
                 bur_ipa: "/be hɑl be/",
                 bur_std: "be hal be",
                 kashmiri: "کیا حال چھُ",
@@ -771,6 +837,7 @@
             {
                 id: 52,
                 burushaski: "aw",
+                bur_perso: "آؤ",
                 bur_ipa: "/au/",
                 bur_std: "au",
                 kashmiri: "مول",
@@ -783,6 +850,7 @@
             {
                 id: 53,
                 burushaski: "atro",
+                bur_perso: "اَترو",
                 bur_ipa: "/atro/",
                 bur_std: "a-cho",
                 kashmiri: "بوی",
@@ -795,6 +863,7 @@
             {
                 id: 54,
                 burushaski: "yatis",
+                bur_perso: "یَتِس",
                 bur_ipa: "/jʌtis/",
                 bur_std: "yatis",
                 kashmiri: "کَلٕ",
@@ -807,6 +876,7 @@
             {
                 id: 55,
                 burushaski: "elching",
+                bur_perso: "ایلچِنگ",
                 bur_ipa: "/elt͡ʃing/",
                 bur_std: "elching",
                 kashmiri: "اَچھ",
@@ -819,6 +889,7 @@
             {
                 id: 56,
                 burushaski: "impus",
+                bur_perso: "اِمپُس",
                 bur_ipa: "/impus/",
                 bur_std: "gumpus",
                 kashmiri: "نَس",
@@ -831,6 +902,7 @@
             {
                 id: 57,
                 burushaski: "ekhat",
+                bur_perso: "ایکھَت",
                 bur_ipa: "/ekʰʌt/",
                 bur_std: "khat",
                 kashmiri: "اَس",
@@ -843,6 +915,7 @@
             {
                 id: 58,
                 burushaski: "ema",
+                bur_perso: "ایما",
                 bur_ipa: "/emʌ/",
                 bur_std: "eme",
                 kashmiri: "دَند",
@@ -855,6 +928,7 @@
             {
                 id: 59,
                 burushaski: "yutin",
+                bur_perso: "یُٹِن",
                 bur_ipa: "/jutin/",
                 bur_std: "yutin",
                 kashmiri: "کھوٗر",
@@ -867,6 +941,7 @@
             {
                 id: 60,
                 burushaski: "ghuying",
+                bur_perso: "غویِنگ",
                 bur_ipa: "/ɣujing/",
                 bur_std: "ghuying",
                 kashmiri: "مَس",
@@ -879,6 +954,7 @@
             {
                 id: 61,
                 burushaski: "gay",
+                bur_perso: "گے",
                 bur_ipa: "/gai/",
                 bur_std: "gay",
                 kashmiri: "شیٖن",
@@ -891,6 +967,7 @@
             {
                 id: 62,
                 burushaski: "karalo",
+                bur_perso: "کَرلو",
                 bur_ipa: "/kʌrʌlo/",
                 bur_std: "karalo",
                 kashmiri: "کَٹھ",
@@ -903,6 +980,7 @@
             {
                 id: 63,
                 burushaski: "bua",
+                bur_perso: "بُوا",
                 bur_ipa: "/buɑ/",
                 bur_std: "bua",
                 kashmiri: "گاو",
@@ -915,6 +993,7 @@
             {
                 id: 64,
                 burushaski: "bush",
+                bur_perso: "بُش",
                 bur_ipa: "/buʃ/",
                 bur_std: "bush",
                 kashmiri: "برٛوoر",
@@ -927,6 +1006,7 @@
             {
                 id: 65,
                 burushaski: "ghaan",
+                bur_perso: "غان",
                 bur_ipa: "/ɣɑːn/",
                 bur_std: "qa!",
                 kashmiri: "کاو",
@@ -939,6 +1019,7 @@
             {
                 id: 66,
                 burushaski: "tal",
+                bur_perso: "ٹَل",
                 bur_ipa: "/tʌl/",
                 bur_std: "tal",
                 kashmiri: "کوoتُر",
@@ -951,6 +1032,7 @@
             {
                 id: 67,
                 burushaski: "chagal",
+                bur_perso: "چھَگَل",
                 bur_ipa: "/t͡ʃʌgʌl/",
                 bur_std: "chagal",
                 kashmiri: "لوoہ",
@@ -963,6 +1045,7 @@
             {
                 id: 68,
                 burushaski: "balt",
+                bur_perso: "بَلٹ",
                 bur_ipa: "/bʌlt/",
                 bur_std: "balt",
                 kashmiri: "ژوِّنٛٹ",
@@ -975,6 +1058,7 @@
             {
                 id: 69,
                 burushaski: "khakayo",
+                bur_perso: "کھَکَیو",
                 bur_ipa: "/kʰʌkʌjo/",
                 bur_std: "khakayo",
                 kashmiri: "ڈوٗن",
@@ -987,6 +1071,7 @@
             {
                 id: 70,
                 burushaski: "hakichang",
+                bur_perso: "ہَکیچنگ",
                 bur_ipa: "/hʌkit͡ʃʌng/",
                 bur_std: "hakichang",
                 kashmiri: "مکانٕ",
@@ -999,6 +1084,7 @@
             {
                 id: 71,
                 burushaski: "um",
+                bur_perso: "اُم",
                 bur_ipa: "/um/",
                 bur_std: "un",
                 kashmiri: "ژٕ",
@@ -1011,6 +1097,7 @@
             {
                 id: 72,
                 burushaski: "saboor",
+                bur_perso: "صبور",
                 bur_ipa: "/sʌbuːr/",
                 bur_std: "saboor",
                 kashmiri: "راٹھ",
@@ -1043,7 +1130,7 @@
 
             entries.forEach(entry => {
                 const card = document.createElement('div');
-                card.className = 'bg-white rounded-xl shadow-sm border border-gray-100 p-6 card-hover transition-all duration-300 relative group';
+                card.className = 'bg-white rounded-xl shadow-sm border border-gray-100 p-6 card-hover transition-all duration-300 relative group flex flex-col justify-between';
                 
                 card.innerHTML = `
                     <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -1052,28 +1139,36 @@
                         </button>
                     </div>
                     
-                    <div class="flex justify-between items-start mb-2">
-                        <span class="text-xs font-bold text-indigo-500 uppercase tracking-wider">${entry.pos}</span>
-                        <span class="text-xs text-gray-400 font-mono">#${entry.id.toString().padStart(3, '0')}</span>
-                    </div>
-
-                    <div class="mb-4">
-                        <h2 class="text-2xl font-bold text-gray-900">${entry.burushaski}</h2>
-                        <div class="flex gap-2 items-baseline mt-1">
-                            <span class="ipa text-sm bg-gray-100 px-2 py-0.5 rounded text-gray-600">[${entry.bur_ipa}]</span>
-                            <span class="text-sm text-gray-500 italic">(${entry.bur_std})</span>
+                    <div>
+                        <div class="flex justify-between items-start mb-2">
+                            <span class="text-xs font-bold text-indigo-500 uppercase tracking-wider">${entry.pos}</span>
+                            <span class="text-xs text-gray-400 font-mono">#${entry.id.toString().padStart(3, '0')}</span>
                         </div>
-                    </div>
 
-                    <div class="grid grid-cols-2 gap-4 mb-4 bg-gray-50 p-3 rounded-lg border border-gray-100">
-                        <div>
-                            <p class="text-xs text-gray-500 uppercase mb-1">Kashmiri</p>
-                            <p class="kashmiri-text text-xl text-indigo-900" dir="rtl">${entry.kashmiri}</p>
-                            <p class="text-xs text-gray-400 font-mono mt-1">[${entry.kash_ipa}]</p>
+                        <div class="mb-4">
+                            <div class="flex items-center gap-3">
+                                <h2 class="text-2xl font-bold text-gray-900">${entry.burushaski}</h2>
+                                <button onclick="speakEntry('${entry.bur_perso}')" class="text-indigo-400 hover:text-indigo-600 transition-colors p-1 rounded-full hover:bg-indigo-50" title="Listen (Approx.)">
+                                    <i class="fas fa-volume-up text-sm"></i>
+                                </button>
+                            </div>
+                            <p class="ur-text text-xl text-gray-700 mt-1" dir="rtl">${entry.bur_perso}</p>
+                            <div class="flex gap-2 items-baseline mt-2">
+                                <span class="ipa text-sm bg-gray-100 px-2 py-0.5 rounded text-gray-600">[${entry.bur_ipa}]</span>
+                                <span class="text-sm text-gray-500 italic">(${entry.bur_std})</span>
+                            </div>
                         </div>
-                        <div class="border-l border-gray-200 pl-4">
-                            <p class="text-xs text-gray-500 uppercase mb-1">Meaning</p>
-                            <p class="font-semibold text-gray-800 leading-tight">${entry.english}</p>
+
+                        <div class="grid grid-cols-2 gap-4 mb-4 bg-gray-50 p-3 rounded-lg border border-gray-100">
+                            <div>
+                                <p class="text-xs text-gray-500 uppercase mb-1">Kashmiri</p>
+                                <p class="ur-text text-xl text-indigo-900" dir="rtl">${entry.kashmiri}</p>
+                                <p class="text-xs text-gray-400 font-mono mt-1">[${entry.kash_ipa}]</p>
+                            </div>
+                            <div class="border-l border-gray-200 pl-4">
+                                <p class="text-xs text-gray-500 uppercase mb-1">Meaning</p>
+                                <p class="font-semibold text-gray-800 leading-tight">${entry.english}</p>
+                            </div>
                         </div>
                     </div>
 
@@ -1096,7 +1191,8 @@
                     entry.burushaski.toLowerCase().includes(searchTerm) ||
                     entry.english.toLowerCase().includes(searchTerm) ||
                     entry.bur_ipa.toLowerCase().includes(searchTerm) ||
-                    entry.kashmiri.includes(searchTerm);
+                    entry.kashmiri.includes(searchTerm) ||
+                    entry.bur_perso.includes(searchTerm);
                 
                 const matchesPos = selectedPos === 'all' || entry.pos.toLowerCase().includes(selectedPos);
 
@@ -1112,17 +1208,48 @@
             if (!entry) return;
 
             const text = `Entry #${entry.id}
-Burushaski: ${entry.burushaski} [${entry.bur_ipa}]
+Burushaski: ${entry.burushaski} (${entry.bur_perso}) [${entry.bur_ipa}]
 Kashmiri: ${entry.kashmiri} [${entry.kash_ipa}]
 English: ${entry.english} (${entry.pos})
 Example: ${entry.example} -> ${entry.example_en}`;
 
             navigator.clipboard.writeText(text).then(() => {
-                // Visual feedback could go here
                 alert("Entry copied to clipboard!");
             });
         }
         
+        // Text to Speech Functionality
+        function speakEntry(text) {
+            if (!window.speechSynthesis) {
+                alert("Sorry, your browser does not support text-to-speech.");
+                return;
+            }
+
+            // Cancel any current speech
+            window.speechSynthesis.cancel();
+
+            const utterance = new SpeechSynthesisUtterance(text);
+            
+            // Try to find an Urdu or Hindi voice for best phonetic approximation of the script
+            const voices = window.speechSynthesis.getVoices();
+            const preferredVoice = voices.find(voice => 
+                voice.lang.includes('ur') || voice.lang.includes('hi')
+            );
+
+            if (preferredVoice) {
+                utterance.voice = preferredVoice;
+                utterance.lang = preferredVoice.lang;
+            } else {
+                // Fallback (might not pronounce Perso-Arabic correctly, but usually modern browsers handle it)
+                utterance.lang = 'ur-PK'; 
+            }
+
+            utterance.rate = 0.9; // Slightly slower for clarity
+            utterance.pitch = 1.0;
+
+            window.speechSynthesis.speak(utterance);
+        }
+
         // Modal Logic
         function toggleSourceModal() {
             const modal = document.getElementById('sourceModal');
@@ -1132,6 +1259,9 @@ Example: ${entry.example} -> ${entry.example_en}`;
         // Event Listeners
         searchInput.addEventListener('input', filterEntries);
         posFilter.addEventListener('change', filterEntries);
+
+        // Pre-load voices
+        window.speechSynthesis.getVoices();
 
         // Initial Render
         renderEntries(dictionaryData);
