@@ -576,4 +576,238 @@
                 english: "Rain",
                 pos: "noun",
                 example: "Haralt shuqulo.",
-                example_en: "Rain is fal
+                example_en: "Rain is falling."
+            },
+            {
+                id: 41,
+                burushaski: "huru",
+                bur_ipa: "/huru/",
+                bur_std: "huru",
+                kashmiri: "مَرد",
+                kash_ipa: "/mard/",
+                english: "Men (Plural)",
+                pos: "noun",
+                example: "Huru jam maan.",
+                example_en: "The men gathered."
+            },
+            {
+                id: 42,
+                burushaski: "gushingants",
+                bur_ipa: "/guʃingʌnt͡s/",
+                bur_std: "gushingants",
+                kashmiri: "زَنانہٕ",
+                kash_ipa: "/zanaːnɨ/",
+                english: "Women (Plural)",
+                pos: "noun",
+                example: "Gushingants giratas.",
+                example_en: "The women are dancing."
+            },
+            {
+                id: 43,
+                burushaski: "chaman",
+                bur_ipa: "/t͡ʃʌmʌn/",
+                bur_std: "chaman",
+                kashmiri: "پَکان",
+                kash_ipa: "/pakaːn/",
+                english: "Walking",
+                pos: "verb (participle)",
+                example: "Ine chaman bai.",
+                example_en: "He is walking."
+            },
+            {
+                id: 44,
+                burushaski: "khan",
+                bur_ipa: "/kʰʌn/",
+                bur_std: "khan",
+                kashmiri: "قَلعہٕ",
+                kash_ipa: "/qala/",
+                english: "Fort",
+                pos: "noun",
+                example: "Hari Parbat khan.",
+                example_en: "The Hari Parbat fort."
+            },
+            {
+                id: 45,
+                burushaski: "shughulo",
+                bur_ipa: "/ʃuɣulo/",
+                bur_std: "shughulo",
+                kashmiri: "کَٹھ",
+                kash_ipa: "/katʰ/",
+                english: "Talk / Conversation",
+                pos: "noun",
+                example: "Mi shughulo etchan.",
+                example_en: "We are talking."
+            },
+            {
+                id: 46,
+                burushaski: "eskul",
+                bur_ipa: "/eskul/",
+                bur_std: "eskul",
+                kashmiri: "سکوٗل",
+                kash_ipa: "/skuːl/",
+                english: "School",
+                pos: "noun",
+                example: "Eskul dur bila.",
+                example_en: "The school is far. (Loanword established in dialect)"
+            },
+            {
+                id: 47,
+                burushaski: "ha",
+                bur_ipa: "/hʌ/",
+                bur_std: "ha",
+                kashmiri: "گَرٕ",
+                kash_ipa: "/garɨ/",
+                english: "House",
+                pos: "noun",
+                example: "A-ha Hari Parbat-ulo bila.",
+                example_en: "My house is in Hari Parbat."
+            },
+            {
+                id: 48,
+                burushaski: "yater",
+                bur_ipa: "/jʌter/",
+                bur_std: "yater",
+                kashmiri: "مَشہٕ ہِنٛد",
+                kash_ipa: "/maʃɨhind/",
+                english: "Up / Above",
+                pos: "adverb",
+                example: "Yater ni.",
+                example_en: "Go up."
+            },
+            {
+                id: 49,
+                burushaski: "mar",
+                bur_ipa: "/mʌr/",
+                bur_std: "mar",
+                kashmiri: "گِیو",
+                kash_ipa: "/gʲaw/",
+                english: "Butter / Ghee",
+                pos: "noun",
+                example: "Mar shi.",
+                example_en: "Eat butter."
+            },
+            {
+                id: 50,
+                burushaski: "phat",
+                bur_ipa: "/pʰʌt/",
+                bur_std: "phat",
+                kashmiri: "تراوُن",
+                kash_ipa: "/traːwun/",
+                english: "Leave / Abandon (verb root)",
+                pos: "verb",
+                example: "Phat eti.",
+                example_en: "Leave it."
+            }
+        ];
+
+        // DOM Elements
+        const grid = document.getElementById('dictionary-grid');
+        const searchInput = document.getElementById('searchInput');
+        const posFilter = document.getElementById('posFilter');
+        const entryCount = document.getElementById('entry-count');
+        const noResults = document.getElementById('no-results');
+
+        // Render Function
+        function renderEntries(entries) {
+            grid.innerHTML = '';
+            entryCount.textContent = entries.length;
+
+            if (entries.length === 0) {
+                noResults.classList.remove('hidden');
+                return;
+            } else {
+                noResults.classList.add('hidden');
+            }
+
+            entries.forEach(entry => {
+                const card = document.createElement('div');
+                card.className = 'bg-white rounded-xl shadow-sm border border-gray-100 p-6 card-hover transition-all duration-300 relative group';
+                
+                card.innerHTML = `
+                    <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                        <button onclick="copyEntry(${entry.id})" class="text-gray-400 hover:text-indigo-600 p-1" title="Copy Entry">
+                            <i class="far fa-copy"></i>
+                        </button>
+                    </div>
+                    
+                    <div class="flex justify-between items-start mb-2">
+                        <span class="text-xs font-bold text-indigo-500 uppercase tracking-wider">${entry.pos}</span>
+                        <span class="text-xs text-gray-400 font-mono">#${entry.id.toString().padStart(3, '0')}</span>
+                    </div>
+
+                    <div class="mb-4">
+                        <h2 class="text-2xl font-bold text-gray-900">${entry.burushaski}</h2>
+                        <div class="flex gap-2 items-baseline mt-1">
+                            <span class="ipa text-sm bg-gray-100 px-2 py-0.5 rounded text-gray-600">[${entry.bur_ipa}]</span>
+                            <span class="text-sm text-gray-500 italic">(${entry.bur_std})</span>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-2 gap-4 mb-4 bg-gray-50 p-3 rounded-lg border border-gray-100">
+                        <div>
+                            <p class="text-xs text-gray-500 uppercase mb-1">Kashmiri</p>
+                            <p class="kashmiri-text text-xl text-indigo-900" dir="rtl">${entry.kashmiri}</p>
+                            <p class="text-xs text-gray-400 font-mono mt-1">[${entry.kash_ipa}]</p>
+                        </div>
+                        <div class="border-l border-gray-200 pl-4">
+                            <p class="text-xs text-gray-500 uppercase mb-1">Meaning</p>
+                            <p class="font-semibold text-gray-800 leading-tight">${entry.english}</p>
+                        </div>
+                    </div>
+
+                    <div class="mt-4 pt-3 border-t border-gray-100">
+                        <p class="text-sm text-gray-600 italic">"${entry.example}"</p>
+                        <p class="text-sm text-gray-500 mt-1">→ ${entry.example_en}</p>
+                    </div>
+                `;
+                grid.appendChild(card);
+            });
+        }
+
+        // Filtering Logic
+        function filterEntries() {
+            const searchTerm = searchInput.value.toLowerCase();
+            const selectedPos = posFilter.value;
+
+            const filtered = dictionaryData.filter(entry => {
+                const matchesSearch = 
+                    entry.burushaski.toLowerCase().includes(searchTerm) ||
+                    entry.english.toLowerCase().includes(searchTerm) ||
+                    entry.bur_ipa.toLowerCase().includes(searchTerm) ||
+                    entry.kashmiri.includes(searchTerm);
+                
+                const matchesPos = selectedPos === 'all' || entry.pos.toLowerCase().includes(selectedPos);
+
+                return matchesSearch && matchesPos;
+            });
+
+            renderEntries(filtered);
+        }
+
+        // Copy Functionality
+        function copyEntry(id) {
+            const entry = dictionaryData.find(e => e.id === id);
+            if (!entry) return;
+
+            const text = `Entry #${entry.id}
+Burushaski: ${entry.burushaski} [${entry.bur_ipa}]
+Kashmiri: ${entry.kashmiri} [${entry.kash_ipa}]
+English: ${entry.english} (${entry.pos})
+Example: ${entry.example} -> ${entry.example_en}`;
+
+            navigator.clipboard.writeText(text).then(() => {
+                // Visual feedback could go here
+                alert("Entry copied to clipboard!");
+            });
+        }
+
+        // Event Listeners
+        searchInput.addEventListener('input', filterEntries);
+        posFilter.addEventListener('change', filterEntries);
+
+        // Initial Render
+        renderEntries(dictionaryData);
+
+    </script>
+</body>
+</html>
